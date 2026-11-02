@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Năm công thức biểu đạt có cấu trúc trong tiếng Trung — trang chiếu dùng khi dạy khẩu ngữ cao cấp.">
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light}
+html,body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<title>结构化表达五大公式</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Serif+SC:wght@400;600&display=swap">
+
+<style>
+/* Layout: thanh điều khiển dính trên cùng cho người đang chiếu, bên dưới là một
+   cột đọc rộng với các khối mở dần; chữ Hán là lớp hình ảnh chính của trang. */
+:root{
+  --surface:#FFFFFF; --raise:#FAFBFC;
+  --fg:#141A21; --muted:#5B6672; --rule:#E2E7EC;
+  --amber:#9C6B06; --amber-soft:#FCF3E0;
+  --bad:#FBEAE6; --bad-line:#E0B4AA; --good:#E4F2E9; --good-line:#A6C9B2;
+  --shadow:0 1px 2px rgba(20,26,33,.05),0 10px 28px -20px rgba(20,26,33,.35);
+  --f-dis:"Newsreader",Georgia,serif;
+  --f-ui:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  --f-zh:"Noto Serif SC","Songti SC",SimSun,serif;
+  /* màu nhận diện, mặc định 石青 */
+  --ac:#1E7290; --soft:#E3F1F5; --tint:#F1F8FA;
+  --ink:var(--ac); --ink-soft:var(--soft); --bg:var(--tint);
+}
+/* bộ màu khoáng của hội hoạ Trung Hoa, mỗi công thức một sắc */
+:root[data-f="start"]{--ac:#1E7290;--soft:#E3F1F5;--tint:#F1F8FA}
+:root[data-f="drill"]{--ac:#1E7290;--soft:#E3F1F5;--tint:#F1F8FA}
+:root[data-f="SCQA"]{--ac:#2A6DAE;--soft:#E7F0FA;--tint:#F2F7FD}  /* 石青 */
+:root[data-f="FAB"] {--ac:#C44F38;--soft:#FBEAE5;--tint:#FDF5F2}  /* 朱砂 */
+:root[data-f="DESC"]{--ac:#2A8463;--soft:#E2F2EB;--tint:#F1F9F5}  /* 石绿 */
+:root[data-f="3W"]  {--ac:#B5811A;--soft:#FAF0D9;--tint:#FDF8EB}  /* 藤黄 */
+:root[data-f="PREP"]{--ac:#6B52A6;--soft:#ECE8F7;--tint:#F7F5FD}  /* 青莲 */
+[data-c="start"],[data-c="drill"]{--dot:#1E7290}
+[data-c="SCQA"]{--dot:#2A6DAE} [data-c="FAB"]{--dot:#C44F38}
+[data-c="DESC"]{--dot:#2A8463} [data-c="3W"]{--dot:#B5811A}
+[data-c="PREP"]{--dot:#6B52A6}
+
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --surface:#161D25; --raise:#1C242E;
+  --fg:#E8EDF3; --muted:#9AA6B3; --rule:#2A333E;
+  --amber:#E6B45E; --amber-soft:#2B2315;
+  --bad:#30201D; --bad-line:#60403A; --good:#18271F; --good-line:#3C5A45;
+  --shadow:0 1px 2px rgba(0,0,0,.45),0 10px 28px -20px rgba(0,0,0,.9);
+  --ac:#5EC2DE; --soft:#112A33; --tint:#0C1116;
+  color-scheme:dark;
+}
+:root:not([data-theme="light"])[data-f="SCQA"]{--ac:#7CB2EC;--soft:#13202F;--tint:#0C1117}
+:root:not([data-theme="light"])[data-f="FAB"] {--ac:#F0907A;--soft:#2B1915;--tint:#120E0D}
+:root:not([data-theme="light"])[data-f="DESC"]{--ac:#5FC49D;--soft:#122520;--tint:#0C120F}
+:root:not([data-theme="light"])[data-f="3W"]  {--ac:#E6B84F;--soft:#2A2211;--tint:#12100B}
+:root:not([data-theme="light"])[data-f="PREP"]{--ac:#AD95E8;--soft:#1E1930;--tint:#100E16}
+:root:not([data-theme="light"]) [data-c="start"],
+:root:not([data-theme="light"]) [data-c="drill"]{--dot:#5EC2DE}
+:root:not([data-theme="light"]) [data-c="SCQA"]{--dot:#7CB2EC}
+:root:not([data-theme="light"]) [data-c="FAB"]{--dot:#F0907A}
+:root:not([data-theme="light"]) [data-c="DESC"]{--dot:#5FC49D}
+:root:not([data-theme="light"]) [data-c="3W"]{--dot:#E6B84F}
+:root:not([data-theme="light"]) [data-c="PREP"]{--dot:#AD95E8}
+}
+:root[data-theme="dark"]{
+  --surface:#161D25; --raise:#1C242E;
+  --fg:#E8EDF3; --muted:#9AA6B3; --rule:#2A333E;
+  --amber:#E6B45E; --amber-soft:#2B2315;
+  --bad:#30201D; --bad-line:#60403A; --good:#18271F; --good-line:#3C5A45;
+  --shadow:0 1px 2px rgba(0,0,0,.45),0 10px 28px -20px rgba(0,0,0,.9);
+  --ac:#5EC2DE; --soft:#112A33; --tint:#0C1116;
+  color-scheme:dark;
+}
+:root[data-theme="dark"][data-f="SCQA"]{--ac:#7CB2EC;--soft:#13202F;--tint:#0C1117}
+:root[data-theme="dark"][data-f="FAB"] {--ac:#F0907A;--soft:#2B1915;--tint:#120E0D}
+:root[data-theme="dark"][data-f="DESC"]{--ac:#5FC49D;--soft:#122520;--tint:#0C120F}
+:root[data-theme="dark"][data-f="3W"]  {--ac:#E6B84F;--soft:#2A2211;--tint:#12100B}
+:root[data-theme="dark"][data-f="PREP"]{--ac:#AD95E8;--soft:#1E1930;--tint:#100E16}
+:root[data-theme="dark"] [data-c="start"],
+:root[data-theme="dark"] [data-c="drill"]{--dot:#5EC2DE}
+:root[data-theme="dark"] [data-c="SCQA"]{--dot:#7CB2EC}
+:root[data-theme="dark"] [data-c="FAB"]{--dot:#F0907A}
+:root[data-theme="dark"] [data-c="DESC"]{--dot:#5FC49D}
+:root[data-theme="dark"] [data-c="3W"]{--dot:#E6B84F}
+:root[data-theme="dark"] [data-c="PREP"]{--dot:#AD95E8}
+/* thẻ công thức ở trang Mở đầu dùng màu riêng của nó */
+.step[data-c]{border-top-color:var(--dot)}
+.step[data-c] .k{color:var(--dot)}
+.step[data-c] .idx{color:var(--dot)}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-ui);
+  font-size:16px;line-height:1.55;margin:0;-webkit-text-size-adjust:100%;
+  transition:background .4s ease}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);
+  z-index:40;background:var(--surface)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.zh{font-family:var(--f-zh);line-height:1.75}
+h1,h2,h3{text-wrap:balance;margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:3px}
+
+/* ── thanh trên ───────────────────────────────────────────── */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;
+  background:var(--surface);box-shadow:inset 0 -2px 0 var(--ac);
+  transition:box-shadow .4s ease}
+.bar-in{max-width:1180px;margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:8px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.brand{font-family:var(--f-zh);font-weight:600;font-size:17px;letter-spacing:.01em;
+  white-space:nowrap;margin-right:2px;color:var(--ac);transition:color .4s ease}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;flex:1 1 320px;min-width:0}
+.tab{background:none;border:1px solid transparent;border-radius:999px;
+  padding:5px 11px 5px 9px;font-size:13.5px;font-weight:500;color:var(--muted);
+  white-space:nowrap;display:inline-flex;align-items:center;gap:7px;
+  transition:background .18s,color .18s}
+.tab::before{content:"";width:7px;height:7px;border-radius:50%;
+  background:var(--dot,var(--muted));flex:0 0 auto}
+.tab:hover{color:var(--fg);background:var(--raise)}
+.tab[aria-current="true"]{background:var(--ac);color:#fff}
+.tab[aria-current="true"]::before{background:rgba(255,255,255,.85)}
+:root[data-theme="dark"] .tab[aria-current="true"]{color:#101620}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tab[aria-current="true"]{color:#101620}
+  :root:not([data-theme="light"]) .tab[aria-current="true"]::before{background:rgba(16,22,32,.6)}}
+:root[data-theme="dark"] .tab[aria-current="true"]::before{background:rgba(16,22,32,.6)}
+.tab .n{font-family:var(--f-zh);opacity:.7;margin-right:-2px}
+
+/* ── thanh công cụ lớp học ───────────────────────────────── */
+.tools{background:var(--raise);border-bottom:1px solid var(--rule)}
+.tools-in{max-width:1180px;margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:8px;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+.grp{display:flex;align-items:center;gap:6px;min-width:0;flex-wrap:wrap}
+.grp>.lb{font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--muted);font-weight:600;white-space:nowrap}
+.seg{display:flex;border:1px solid var(--rule);border-radius:7px;overflow:hidden;background:var(--surface)}
+.seg button{background:none;border:0;padding:4px 10px;font-size:13px;font-weight:500;color:var(--muted)}
+.seg button+button{border-left:1px solid var(--rule)}
+.seg button[aria-pressed="true"]{background:var(--ac);color:var(--surface)}
+.tgl{border:1px solid var(--rule);background:var(--surface);border-radius:7px;
+  padding:4px 11px;font-size:13px;font-weight:500;color:var(--muted)}
+.tgl[aria-pressed="true"]{background:var(--amber-soft);border-color:var(--amber);color:var(--amber)}
+.clock{font-variant-numeric:tabular-nums;font-weight:600;font-size:19px;
+  min-width:58px;text-align:center;letter-spacing:.02em}
+.clock.run{color:var(--amber)}
+.clock.done{color:#C0392B}
+:root[data-theme="dark"] .clock.done{color:#F08B7E}
+.mini{border:1px solid var(--rule);background:var(--surface);border-radius:6px;
+  padding:3px 8px;font-size:12.5px;color:var(--muted);font-weight:500}
+.mini:hover{color:var(--fg);border-color:var(--ink)}
+
+/* ── khung trang ─────────────────────────────────────────── */
+main{max-width:1180px;margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:26px 72px}
+section{margin-bottom:34px}
+.hero{position:relative;border-radius:18px;padding:22px 24px 24px;
+  background:linear-gradient(148deg,var(--soft) 0%,var(--surface) 68%);
+  border:1px solid var(--rule);overflow:hidden;transition:background .4s ease}
+.hero::after{content:"";position:absolute;right:-70px;top:-90px;width:230px;height:230px;
+  border-radius:50%;background:var(--ac);opacity:.07;pointer-events:none}
+.eyebrow{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ac);font-weight:600;margin-bottom:6px}
+h1.big{font-family:var(--f-zh);font-weight:600;font-size:clamp(30px,5.2vw,46px);
+  line-height:1.2;letter-spacing:.01em;color:var(--ac);transition:color .4s ease}
+.sub{font-family:var(--f-dis);font-style:italic;color:var(--muted);
+  font-size:clamp(15px,1.8vw,17.5px);margin-top:4px;max-width:62ch}
+.ribbon{height:4px;width:84px;border-radius:999px;background:var(--ac);
+  margin-top:14px;opacity:.9}
+h2.sec{font-family:var(--f-dis);font-weight:600;font-size:clamp(20px,2.6vw,25px);
+  margin-bottom:4px;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+h2.sec::before{content:"";width:5px;height:19px;border-radius:999px;
+  background:var(--ac);flex:0 0 auto;opacity:.85}
+.secnote{color:var(--muted);font-size:14.5px;max-width:72ch;margin:0 0 14px}
+p.lead{max-width:68ch;margin:0 0 14px}
+
+/* ── thẻ bước ────────────────────────────────────────────── */
+.steps{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(215px,1fr))}
+.step{background:var(--surface);border:1px solid var(--rule);border-top:3px solid var(--ac);
+  border-radius:14px;padding:14px 15px;box-shadow:var(--shadow);min-width:0;position:relative;
+  overflow:hidden}
+.step .k{font-family:var(--f-zh);font-weight:600;font-size:21px;margin-bottom:3px;
+  color:var(--ac)}
+.step .fn{font-size:13.5px;color:var(--muted);margin-bottom:9px}
+.step ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:5px;
+  position:relative}
+.step li{font-family:var(--f-zh);font-size:15.5px;line-height:1.5}
+.step .idx{position:absolute;top:6px;right:15px;font-family:var(--f-dis);
+  font-size:36px;line-height:1;color:var(--ac);opacity:.13;font-weight:600;
+  pointer-events:none}
+
+/* ── thẻ khung câu ───────────────────────────────────────── */
+.grp-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  margin:22px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--rule)}
+.grp-h .k{font-family:var(--f-zh);font-weight:600;font-size:20px;color:var(--ac)}
+.grp-h .nt{font-size:13.5px;color:var(--muted);font-style:italic}
+.cards{display:grid;gap:11px;grid-template-columns:repeat(auto-fit,minmax(310px,1fr))}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:13px;
+  overflow:hidden;min-width:0;display:flex;flex-direction:column;
+  border-left:3px solid var(--rule);transition:border-color .2s,box-shadow .2s}
+.card:hover{border-left-color:var(--ac)}
+.card.open{border-left-color:var(--ac);box-shadow:var(--shadow)}
+.card>.top{width:100%;text-align:left;background:none;border:0;padding:12px 14px;
+  display:flex;gap:10px;align-items:flex-start}
+.card>.top:hover{background:var(--raise)}
+.card .pt{font-family:var(--f-zh);font-size:17px;font-weight:600;line-height:1.45;flex:1;min-width:0}
+.card .chev{flex:0 0 auto;color:var(--muted);font-size:12px;margin-top:5px;
+  transition:transform .18s}
+.card.open .chev{transform:rotate(90deg)}
+.card .when{padding:0 14px 11px;font-size:13px;color:var(--muted);line-height:1.5}
+.card .when b{color:var(--ink);font-weight:600;font-style:normal}
+.card .exs{border-top:1px solid var(--rule);background:var(--raise);padding:11px 14px;
+  display:flex;flex-direction:column;gap:9px}
+.ex{display:flex;gap:9px;min-width:0}
+.ex .no{flex:0 0 auto;color:var(--ink);font-size:13px;font-weight:600;margin-top:3px}
+.ex .bd{min-width:0}
+.ex .zh{font-family:var(--f-zh);font-size:16px}
+.ex .vi{font-size:13px;color:var(--muted);font-style:italic;margin-top:1px}
+
+/* ── khối chữ Hán lớn (bài mẫu, hội thoại) ───────────────── */
+.panel{background:var(--surface);border:1px solid var(--rule);
+  border-left:4px solid var(--ac);border-radius:14px;
+  padding:16px 18px;box-shadow:var(--shadow)}
+.panel .ln{font-family:var(--f-zh);font-size:clamp(17px,2.1vw,20px);line-height:1.85;
+  margin:0 0 7px}
+.panel .ln:last-child{margin-bottom:0}
+.panel .vi{font-size:13.5px;color:var(--muted);font-style:italic;line-height:1.6;
+  border-top:1px dashed var(--rule);padding-top:10px;margin-top:11px}
+.panel .lbl{font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--amber);font-weight:600;margin-bottom:8px}
+
+/* ── so sánh ─────────────────────────────────────────────── */
+.vs{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+@media (max-width:720px){.vs{grid-template-columns:1fr}}
+.vs>div{border-radius:11px;padding:13px 15px;border:1px solid;min-width:0}
+.vs .x{background:var(--bad);border-color:var(--bad-line)}
+.vs .o{background:var(--good);border-color:var(--good-line)}
+.vs h4{margin:0 0 7px;font-size:12.5px;letter-spacing:.03em;font-weight:600}
+.vs p{margin:0;font-family:var(--f-zh);font-size:16.5px;line-height:1.75}
+
+/* ── danh sách lỗi ───────────────────────────────────────── */
+.traps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;
+  counter-reset:t}
+.traps li{counter-increment:t;display:flex;gap:11px;background:var(--surface);
+  border:1px solid var(--rule);border-left:3px solid var(--bad-line);
+  border-radius:9px;padding:11px 14px;min-width:0}
+.traps li::before{content:counter(t);flex:0 0 auto;font-family:var(--f-dis);
+  font-weight:600;color:var(--muted);font-size:15px}
+.traps .tx{min-width:0;font-size:14.5px;line-height:1.55}
+
+/* ── bài tập ─────────────────────────────────────────────── */
+.task{background:var(--surface);border:1px solid var(--rule);border-radius:14px;
+  padding:16px 18px;box-shadow:var(--shadow);margin-bottom:14px}
+.task h3{font-family:var(--f-dis);font-size:19px;font-weight:600;margin-bottom:5px;
+  color:var(--ac)}
+.task .lead{font-size:14.5px;color:var(--muted);margin:0 0 12px;max-width:72ch}
+.mat{background:var(--raise);border:1px solid var(--rule);border-radius:9px;
+  padding:12px 14px;margin-bottom:12px}
+.mat .ln{font-family:var(--f-zh);font-size:17px;line-height:1.8;margin:0 0 4px}
+.mat .ln:last-child{margin:0}
+.mat .hd{font-family:var(--f-zh);font-size:14px;color:var(--amber);font-weight:600;
+  margin-bottom:6px}
+.req{list-style:none;margin:0 0 12px;padding:0;display:flex;flex-direction:column;gap:5px}
+.req li{display:flex;gap:8px;font-size:14px;color:var(--fg);min-width:0}
+.req li::before{content:"→";color:var(--ink);flex:0 0 auto;font-weight:600}
+.btn{border:1px solid var(--ac);background:var(--soft);color:var(--ac);
+  border-radius:999px;padding:6px 16px;font-size:13.5px;font-weight:600;
+  transition:background .18s,color .18s}
+.btn:hover{background:var(--ac);color:var(--surface)}
+.ans{margin-top:12px;background:var(--good);border:1px solid var(--good-line);
+  border-radius:9px;padding:13px 15px}
+.ans .ln{font-family:var(--f-zh);font-size:16.5px;line-height:1.8;margin:0 0 5px}
+.ans .vi{font-size:13px;color:var(--muted);font-style:italic;line-height:1.6;margin-top:8px}
+.ans .lbl{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;
+  color:var(--muted);margin-bottom:7px}
+.chk{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.chk li{display:flex;gap:9px;font-size:14px;min-width:0}
+.chk li::before{content:"";flex:0 0 auto;width:13px;height:13px;margin-top:4px;
+  border:1.5px solid var(--muted);border-radius:3px}
+
+/* ── bốc thăm ────────────────────────────────────────────── */
+.draw{background:var(--surface);border:1px solid var(--rule);border-radius:12px;
+  padding:18px;box-shadow:var(--shadow);text-align:center}
+.draw .slot{font-size:clamp(17px,2.4vw,21px);line-height:1.5;min-height:2.6em;
+  display:flex;align-items:center;justify-content:center;max-width:46ch;margin:0 auto 12px}
+.draw .slot .zh{font-family:var(--f-zh)}
+.draw .key{font-family:var(--f-dis);font-weight:600;color:var(--ink);font-size:17px}
+.row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+
+/* ── bảng nhận diện ──────────────────────────────────────── */
+.rec{width:100%;border-collapse:collapse;font-size:14.5px}
+.rec th,.rec td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--rule);
+  vertical-align:top}
+.rec th{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.rec td.k{width:120px;font-family:var(--f-dis);font-weight:600;color:var(--ink)}
+.wrap-x{overflow-x:auto}
+
+.hint{font-size:13px;color:var(--muted);font-style:italic;margin-top:10px;max-width:70ch}
+.kbd{font-family:var(--f-ui);font-size:11.5px;border:1px solid var(--rule);
+  border-bottom-width:2px;border-radius:4px;padding:1px 5px;color:var(--muted);
+  background:var(--surface)}
+
+/* ── chế độ gỡ dần hỗ trợ ────────────────────────────────── */
+:root[data-round="2"] .step .fn,
+:root[data-round="2"] .step ul{display:none}
+:root[data-round="2"] .card .when,
+:root[data-round="2"] .card .exs{display:none!important}
+:root[data-round="2"] .card>.top{pointer-events:none}
+:root[data-round="2"] .card .chev{display:none}
+:root[data-round="3"] .step .fn,
+:root[data-round="3"] .step ul{display:none}
+:root[data-round="3"] #bank,
+:root[data-round="3"] #sample{display:none}
+:root[data-round="3"] .step .k{font-size:30px}
+.roundmsg{display:none;background:var(--amber-soft);border:1px solid var(--amber);
+  color:var(--amber);border-radius:9px;padding:10px 14px;font-size:14px;font-weight:500}
+:root[data-round="2"] #rmsg2,:root[data-round="3"] #rmsg3{display:block}
+:root[data-novi="1"] .vi,:root[data-novi="1"] .secnote,
+:root[data-novi="1"] .card .when{display:none!important}
+</style>
+
+</head>
+<body>
+<div class="bar">
+  <div class="bar-in">
+    <span class="brand zh">五大公式</span>
+    <nav class="tabs" id="tabs" aria-label="Chọn phần"></nav>
+  </div>
+</div>
+
+<div class="tools">
+  <div class="tools-in">
+    <div class="grp">
+      <span class="lb">Vòng</span>
+      <div class="seg" id="rounds" role="group" aria-label="Mức hỗ trợ">
+        <button data-r="1" aria-pressed="true">1 · đủ khung</button>
+        <button data-r="2" aria-pressed="false">2 · chỉ bước</button>
+        <button data-r="3" aria-pressed="false">3 · trống</button>
+      </div>
+    </div>
+    <div class="grp">
+      <button class="tgl" id="novi" aria-pressed="false">Ẩn tiếng Việt</button>
+    </div>
+    <div class="grp">
+      <span class="lb">Đồng hồ</span>
+      <span class="clock" id="clock">0:40</span>
+      <button class="mini" data-t="20">20s</button>
+      <button class="mini" data-t="40">40s</button>
+      <button class="mini" data-t="60">60s</button>
+      <button class="mini" data-t="90">90s</button>
+      <button class="mini" id="go">Chạy</button>
+      <button class="mini" id="rs">Về đầu</button>
+    </div>
+  </div>
+</div>
+
+<main id="app"></main>
+
+<script id="data" type="application/json">{"order":["SCQA","FAB","DESC","3W","PREP"],"formulas":{"SCQA":{"code":"SCQA","no":"1","zh":"SCQA 汇报法","vn":"Công thức báo cáo — khi bạn phải trình bày công việc với cấp trên hoặc khách hàng","when":"Báo cáo tiến độ, trình bày một việc cần người khác quyết, mở đầu một email công việc dài. Điểm chung của những lúc này: người nghe bận, họ chỉ dành cho bạn khoảng 60 giây đầu. Nói đúng thứ tự bốn bước thì 60 giây đó là đủ.","steps":[{"label":"S 情景","fn":"Nêu bối cảnh hai bên đều biết và đều đồng ý","pats":["目前……，原定……","截至上周，我们已经……","按照原来的计划，……"]},{"label":"C 冲突","fn":"Nêu biến cố làm bối cảnh đó không còn đúng","pats":["但是最近出现了一个情况：……","没想到……","问题出在……"]},{"label":"Q 问题","fn":"Chốt lại câu hỏi cần quyết","pats":["那么，我们是……，还是……？","现在的关键是……","接下来该怎么走？"]},{"label":"A 答案","fn":"Đưa phương án, nói rõ mình nghiêng về đâu","pats":["我的建议是……","我倾向于第二个方案，理由是……","我想提出两个方案，供您参考。"]}],"bankNote":"Mỗi bước dưới đây có ba khung câu. Đừng cố thuộc cả ba. Chọn một khung bạn thấy thuận miệng nhất, dùng nó thật quen đã, rồi mới mở sang khung thứ hai.","bank":[{"label":"S 情景","note":"Dựng bối cảnh hai bên đều công nhận","pats":[{"p":"目前……，原定……","when":"mở đầu một báo cáo tiến độ — một câu gói được cả “đang ở đâu” và “lẽ ra thế nào”","ex":[{"zh":"目前招生已经完成了七十人，原定这个月底收满八十人。","vi":"Hiện đã tuyển được 70 người, theo kế hoạch cuối tháng này đủ 80."},{"zh":"目前教材校对到第五课，原定下周一全部交稿。","vi":"Hiện giáo trình đã soát tới bài 5, theo kế hoạch thứ Hai tuần sau nộp toàn bộ."}]},{"p":"截至……，我们已经……","when":"cần một mốc thời gian rõ để người nghe biết số liệu tính đến lúc nào — trang trọng hơn, hợp báo cáo trong cuộc họp lớn","ex":[{"zh":"截至上周五，我们已经签了三家合作机构。","vi":"Tính đến thứ Sáu tuần trước, bên mình đã ký với ba đơn vị hợp tác."},{"zh":"截至今天上午，报名人数已经超过了去年同期。","vi":"Tính đến sáng nay, số người đăng ký đã vượt cùng kỳ năm ngoái."}]},{"p":"按照原来的安排，本来应该是……","when":"biết chắc ngay sau đó sẽ nói kế hoạch bị phá vỡ — câu này dọn đường sẵn cho bước C","ex":[{"zh":"按照原来的安排，本来应该是这周开始试听课。","vi":"Theo sắp xếp ban đầu thì tuần này lẽ ra đã bắt đầu buổi học thử."},{"zh":"按照原来的安排，本来应该是由李老师带这个班。","vi":"Theo sắp xếp ban đầu thì lớp này lẽ ra do cô Lý phụ trách."}]}]},{"label":"C 冲突","note":"Nêu biến cố làm bối cảnh đó không còn đúng","pats":[{"p":"但是上周/昨天……突然……","when":"biến cố đến từ bên ngoài, không phải lỗi của mình — chữ 突然 nhấn vào tính bất ngờ","ex":[{"zh":"但是上周合作方突然通知，场地那天要装修。","vi":"Nhưng tuần trước bên hợp tác bất ngờ báo hôm đó địa điểm phải sửa chữa."},{"zh":"但是昨天系统突然出了故障，报名链接打不开了。","vi":"Nhưng hôm qua hệ thống đột nhiên trục trặc, link đăng ký không mở được."}]},{"p":"问题出在……","when":"đã biết rõ nguyên nhân nằm ở đâu, muốn chỉ thẳng một điểm thay vì kể dài dòng","ex":[{"zh":"问题出在时间上：两个班的上课时间撞在一起了。","vi":"Vấn đề nằm ở thời gian: giờ học của hai lớp trùng nhau."},{"zh":"问题出在人手上，这个月有两位老师同时休产假。","vi":"Vấn đề nằm ở nhân sự, tháng này có hai giáo viên cùng nghỉ sinh."}]},{"p":"没想到……","when":"kết quả đi ngược dự tính — giọng mềm hơn, hợp khi báo với cấp trên mà không muốn nghe như đổ lỗi","ex":[{"zh":"没想到报名的人里有一半是零基础，原来的教材偏难了。","vi":"Không ngờ trong số đăng ký có một nửa là mất gốc, giáo trình cũ hơi khó."},{"zh":"没想到周末班的到课率比工作日还低。","vi":"Không ngờ tỷ lệ đi học của lớp cuối tuần lại thấp hơn lớp ngày thường."}]}]},{"label":"Q 问题","note":"Chốt lại đúng một câu hỏi cần quyết","pats":[{"p":"那么，我们是……，还是……？","when":"vấn đề đã rõ thành hai hướng — hỏi kiểu này giúp người nghe quyết trong một giây","ex":[{"zh":"那么，我们是推迟一周开班，还是先开班再补课？","vi":"Vậy mình lùi khai giảng một tuần, hay khai giảng trước rồi dạy bù sau?"},{"zh":"那么，我们是换个场地，还是改成线上？","vi":"Vậy mình đổi địa điểm, hay chuyển sang online?"}]},{"p":"现在的关键是……","when":"nhiều chuyện rối cùng lúc, cần kéo người nghe về đúng một điểm phải quyết","ex":[{"zh":"现在的关键是：这周之内要不要通知学员。","vi":"Điều mấu chốt lúc này là: trong tuần này có thông báo cho học viên hay không."},{"zh":"现在的关键不是钱，是时间。","vi":"Mấu chốt bây giờ không phải tiền, mà là thời gian."}]},{"p":"这件事……，我想先听听您的意见。","when":"không nên tự quyết, phải đẩy quyết định lên cấp trên nhưng vẫn giữ thế chủ động","ex":[{"zh":"这件事要不要往上报，我想先听听您的意见。","vi":"Việc này có báo lên trên không, em muốn nghe ý anh/chị trước."},{"zh":"接下来该怎么走，我想先听听您的意见，再跟团队说。","vi":"Bước tiếp theo đi thế nào, em muốn hỏi ý anh/chị trước rồi mới nói với nhóm."}]}]},{"label":"A 答案","note":"Đưa phương án và nói rõ mình nghiêng về đâu","pats":[{"p":"我的建议是……，这样……","when":"đã có một phương án rõ, kèm luôn một lý do ngắn — dạng dùng nhiều nhất","ex":[{"zh":"我的建议是先开班，缺的两节放到期末补，这样学员不用再等一周。","vi":"Em đề xuất khai giảng trước, hai buổi thiếu dạy bù cuối kỳ, như vậy học viên không phải chờ thêm một tuần."},{"zh":"我的建议是改成线上，这样外地的学员也能参加。","vi":"Em đề xuất chuyển sang online, như vậy học viên ở tỉnh khác cũng tham gia được."}]},{"p":"我想提出两个方案，供您参考。","when":"quyền quyết định thuộc về người nghe — câu này cho thấy mình đã nghĩ chứ không đẩy việc","ex":[{"zh":"我想提出两个方案，供您参考：一是全体推迟，二是分两批。","vi":"Em xin đưa ra hai phương án để anh/chị cân nhắc: một là lùi toàn bộ, hai là chia hai đợt."},{"zh":"我准备了两个方案，各有利弊，您看哪个更合适。","vi":"Em chuẩn bị hai phương án, mỗi cái một ưu nhược, anh/chị xem cái nào hợp hơn."}]},{"p":"我倾向于第……个，理由是……","when":"đã nêu hai phương án thì phải tỏ rõ lập trường — đây là bước hay bị bỏ quên nhất","ex":[{"zh":"我倾向于第二个，理由是成本低，而且下周就能落地。","vi":"Em nghiêng về phương án hai, lý do là chi phí thấp, mà tuần sau là triển khai được."},{"zh":"两个都可以，但我倾向于第一个，因为对老学员比较公平。","vi":"Cái nào cũng được, nhưng em nghiêng về cái thứ nhất, vì công bằng hơn với học viên cũ."}]}]}],"sample":[{"t":"目前我们这个项目已经完成了八成，原定下个月初交付。","k":"zh"},{"t":"但是上周供应商突然通知，有一个关键零件要延迟两周。","k":"zh"},{"t":"那么，我们是按原计划整体推迟，还是先交付能用的部分？","k":"zh"},{"t":"我建议分两批交付：下月初先交已完成的部分，剩下的两周后补齐。这样客户至少能先开工。","k":"zh"},{"t":"Dự án hiện đã xong tám phần, theo kế hoạch đầu tháng sau bàn giao. Nhưng tuần trước nhà cung cấp báo một linh kiện quan trọng chậm hai tuần. Vậy ta lùi toàn bộ theo kế hoạch cũ, hay giao trước phần dùng được? Em đề xuất giao làm hai đợt: đầu tháng sau giao phần đã xong, phần còn lại bù sau hai tuần. Như vậy khách ít nhất có thể khởi công trước.","k":"vn"}],"contrast":null,"traps":["Nhảy thẳng vào A. Vừa mở miệng đã “我建议……”, người nghe còn chưa biết bạn đang nói chuyện gì.","Bước C thành lời than. “供应商太不负责任了” là cảm xúc, không phải biến cố. Biến cố phải là một sự việc: chậm bao lâu, từ ngày nào.","Bỏ mất bước Q. Thiếu nó thì A của bạn chỉ là ý kiến cá nhân, chứ không phải lời giải cho một câu hỏi mà cả hai bên đang cần trả lời."],"tasks":[{"title":"Bài tập 1 — Xếp mảnh tin rời thành một đoạn SCQA","lead":"Bốn mảnh thông tin dưới đây đang để lộn xộn. Hãy xếp chúng vào đúng bốn bước, rồi viết thành một đoạn liền mạch bằng khung câu đã học. Làm trong 5 phút.","material":[{"t":"情境：你是中文中心的班主任，要向主管汇报。","k":"lbl"},{"t":"① 这个班原定 10 月 5 日开课，目前报名 9 人。","k":"zh"},{"t":"② 主教老师 10 月初要去外地参加培训，走不开。","k":"zh"},{"t":"③ 已经有 3 位学员交了全款。","k":"zh"},{"t":"④ 你想到的办法：前两周请王老师代上。","k":"zh"}],"req":["Bắt buộc dùng bốn khung: 目前……，原定…… / 但是…… / 那么，我们是……，还是……？ / 我的建议是……","Mảnh ③ không thuộc bước nào trong bốn bước chính. Bạn sẽ cài nó vào đâu, và vì sao?","Viết xong thì nói lại trong 60 giây, không nhìn bản nháp quá hai lần."],"answer":[{"t":"Đáp án tham khảo","k":"lbl"},{"t":"目前这个班已经报了九人，原定十月五日开课。","k":"zh"},{"t":"但是主教老师十月初要去外地培训，走不开。","k":"zh"},{"t":"那么，我们是把开课时间推到十月中旬，还是按原计划开班？已经有三位学员交了全款，推迟的话得跟他们说清楚。","k":"zh"},{"t":"我的建议是按时开课，前两周请王老师代上，这样交了钱的学员不用等，主教老师回来再接手。","k":"zh"},{"t":"Mảnh ③ nên gài vào bước Q: nó chính là cái làm câu hỏi trở nên khó, chứ không phải một bước riêng. Bạn xếp ③ vào bước S cũng được — miễn là giải thích được vì sao.","k":"vn"}]},{"title":"Bài tập 2 — Báo cáo một việc có thật của chính mình","lead":"Chọn một việc đang dang dở trong công việc hoặc việc học của chính bạn (đừng bịa), báo cáo trong 60 giây theo SCQA. Nhờ một người nghe, hoặc ghi âm lại rồi tự nghe.","material":[{"t":"提示：可以是一门还没修完的课、一个拖着的申请、一件跟老师或同事没谈完的事。","k":"zh"}],"req":[],"answer":[{"t":"Bài nói mẫu — một học viên kể về hồ sơ xin học bổng của mình","k":"lbl"},{"t":"目前我的申请材料已经交齐了，原定这个月十号出结果。","k":"zh"},{"t":"但是上周导师说，推荐信那部分学院要重新走一遍流程。","k":"zh"},{"t":"那么，我是继续等学院的通知，还是先准备第二个方案——申请下一批？","k":"zh"},{"t":"我的建议是两边同时走：这周先把下一批的材料准备好，同时每周跟学院确认一次进度。这样万一这批没赶上，也不用再等半年。","k":"zh"},{"t":"Hồ sơ xin học bổng của em đã nộp đủ, theo kế hoạch ngày 10 tháng này có kết quả. Nhưng tuần trước thầy hướng dẫn nói phần thư giới thiệu khoa phải chạy lại quy trình. Vậy em tiếp tục chờ thông báo của khoa, hay chuẩn bị luôn phương án hai là nộp đợt sau? Em nghĩ nên làm song song: tuần này chuẩn bị sẵn hồ sơ đợt sau, đồng thời mỗi tuần hỏi khoa một lần về tiến độ. Như vậy nếu lỡ đợt này cũng không phải chờ thêm nửa năm.","k":"vn"},{"t":"Việc của bạn khác nên câu chữ sẽ khác. Chỗ cần giống là thứ tự bốn bước, và việc bước S có một mốc thời gian cụ thể (这个月十号) chứ không nói chung chung.","k":"vn"}],"check":["Bước S của bạn có mốc thời gian hoặc con số chưa? Không có thì bối cảnh vẫn còn mơ hồ.","Bước C là một sự việc hay một lời than? Thử hỏi: 这句话能用日历或者邮件证明吗？","Bước Q có đúng một câu hỏi, hay bạn đã trộn hai ba câu vào nhau?","Bước A đã nói rõ bạn nghiêng về đâu chưa, hay mới liệt kê phương án rồi bỏ lửng?"]}]},"FAB":{"code":"FAB","no":"2","zh":"FAB 说服法","vn":"Công thức thuyết phục — khi bạn muốn người khác chọn phương án của mình","when":"Tư vấn cho phụ huynh, bán hàng, đề xuất một công cụ mới với nhóm, xin sếp duyệt ngân sách. Điều cần nhớ: người nghe không quan tâm thứ đó LÀ GÌ, họ quan tâm nó làm được gì CHO HỌ. Hai bước đầu chuẩn bị cho bước thứ ba, và bước thứ ba mới là bước thuyết phục.","steps":[{"label":"F 特征","fn":"Sự thật khách quan, ai kiểm chứng cũng ra kết quả đó","pats":["这款……采用的是……","它的……是……","每周……节，每节……"]},{"label":"A 优势","fn":"So với lựa chọn khác thì hơn ở chỗ nào","pats":["和一般的……相比，它……","也就是说，比……更……","别的……做不到这一点。"]},{"label":"B 利益","fn":"Quy về cái người nghe nhận được","pats":["对您来说，这意味着……","这样一来，您就可以……","也就是说，您不用再……了。"]}],"bankNote":"Bước B là bước khó nhất, vì nó buộc bạn đứng từ phía người nghe mà nghĩ. Khi luyện, hãy luyện bước B trước, bước F sau — làm ngược lại bạn sẽ kẹt mãi ở F.","bank":[{"label":"F 特征","note":"Sự thật khách quan, ai kiểm chứng cũng ra kết quả đó","pats":[{"p":"这门/这款……采用的是……","when":"giới thiệu cách làm, cấu tạo, chất liệu — nghe khách quan, không giống quảng cáo","ex":[{"zh":"这门课采用的是小班制，一个班不超过八个人。","vi":"Khoá này áp dụng lớp nhỏ, mỗi lớp không quá tám người."},{"zh":"这款教材采用的是全彩印刷，每课都配二维码音频。","vi":"Giáo trình này in màu toàn bộ, mỗi bài đều kèm mã QR file nghe."}]},{"p":"它的……是……，每……有……","when":"nêu thông số đo đếm được: thời lượng, số lượng, tần suất","ex":[{"zh":"它的课时是六十节，每周两次，每次九十分钟。","vi":"Khoá có 60 tiết, mỗi tuần hai buổi, mỗi buổi 90 phút."},{"zh":"它的词汇量是一千二百个，每课有二十个左右。","vi":"Lượng từ là 1200, mỗi bài khoảng 20 từ."}]},{"p":"……是由……负责的","when":"điểm mạnh nằm ở con người hoặc đơn vị đứng sau, không nằm ở sản phẩm","ex":[{"zh":"口语课是由在中国教过五年的老师负责的。","vi":"Lớp khẩu ngữ do giáo viên từng dạy năm năm ở Trung Quốc phụ trách."},{"zh":"作业批改是由助教一对一负责的，不是系统自动打分。","vi":"Bài tập do trợ giảng chấm một kèm một, không phải hệ thống tự chấm."}]}]},{"label":"A 优势","note":"So với lựa chọn khác thì hơn ở chỗ nào","pats":[{"p":"和一般的……相比，它……","when":"đặc điểm chỉ có nghĩa khi có mốc so sánh — câu này dựng mốc đó lên","ex":[{"zh":"和一般的大班课相比，它每个人每节课至少能开口五次。","vi":"So với lớp đông thông thường, ở đây mỗi người mỗi buổi nói ít nhất năm lượt."},{"zh":"和市面上一般的教材相比，它的例句都是生活里用得上的。","vi":"So với giáo trình thường thấy trên thị trường, câu ví dụ ở đây đều dùng được trong đời sống."}]},{"p":"也就是说，比……更……","when":"diễn giải lại đặc điểm thành một tính từ người nghe nhớ được","ex":[{"zh":"也就是说，比自己看视频更有人盯着你。","vi":"Nói cách khác, so với tự xem video thì có người theo sát bạn hơn."},{"zh":"也就是说，比传统教材更适合上班族。","vi":"Nói cách khác, hợp với người đi làm hơn giáo trình truyền thống."}]},{"p":"这一点，一般的……做不到。","when":"nhấn tính độc nhất — dùng dè, và phải đúng sự thật, nói quá là mất tin","ex":[{"zh":"这一点，一般的录播课做不到。","vi":"Điểm này thì lớp video quay sẵn thông thường không làm được."},{"zh":"别的机构大多是统一进度，做不到按个人情况调。","vi":"Các nơi khác phần lớn chạy chung tiến độ, không điều chỉnh theo từng người được."}]}]},{"label":"B 利益","note":"Quy về đúng cái người đang nghe nhận được","pats":[{"p":"对您来说，这意味着……","when":"câu bản lề của cả công thức — chuyển từ “nó thế nào” sang “anh/chị được gì”","ex":[{"zh":"对您来说，这意味着孩子每节课都有机会被老师点到名说话。","vi":"Với anh/chị, điều đó nghĩa là mỗi buổi cháu đều có cơ hội được gọi lên nói."},{"zh":"对您来说，这意味着出差回来不用重新交钱补课。","vi":"Với anh/chị, điều đó nghĩa là đi công tác về không phải đóng tiền học lại."}]},{"p":"这样一来，您就可以……了。","when":"lợi ích là một việc người nghe làm được mà trước đó không làm được","ex":[{"zh":"这样一来，您就可以下班以后再上课了。","vi":"Như vậy anh/chị có thể tan làm rồi mới học."},{"zh":"这样一来，您就可以随时看到孩子的学习记录了。","vi":"Như vậy anh/chị xem được lịch sử học của cháu bất cứ lúc nào."}]},{"p":"您不用再……了。","when":"lợi ích nằm ở chỗ bỏ đi một phiền toái — thường đánh mạnh hơn cả lợi ích cộng thêm","ex":[{"zh":"您不用再每天提醒孩子写作业了。","vi":"Anh/chị không phải ngày nào cũng nhắc cháu làm bài nữa."},{"zh":"您不用再担心错过一节课就跟不上了。","vi":"Anh/chị không phải lo nghỉ một buổi là theo không kịp nữa."}]}]}],"sample":[{"t":"这门课每周只有两节，每节一个半小时。","k":"zh"},{"t":"和市面上那种一周五节的速成班相比，节奏慢一些，但每节课后都有一对一的反馈。","k":"zh"},{"t":"对您来说，这意味着您不用请假，下班以后也能坚持下来，而且不会学完就忘。","k":"zh"},{"t":"Khoá này mỗi tuần chỉ hai buổi, mỗi buổi một tiếng rưỡi. So với các lớp cấp tốc một tuần năm buổi ngoài kia thì nhịp chậm hơn, nhưng sau mỗi buổi đều có phản hồi riêng một kèm một. Với anh/chị, điều đó nghĩa là không phải xin nghỉ làm, tan ca vẫn theo được, và học xong không bị quên ngay.","k":"vn"}],"contrast":{"badLbl":"Dừng ở F — người nghe tự hỏi “rồi sao?”","bad":"我们这个课有一对一反馈，老师都是研究生学历，还有录播回看。","goodLbl":"Đi tới B — người nghe thấy mình trong đó","good":"……所以您哪怕出差一周，回来也不会掉队，不用重新交钱补课。","note":"Mẹo tự sửa nhanh: ép mình thêm một câu bắt đầu bằng 「对您来说，这意味着……」 vào cuối mỗi lượt nói. Nói được câu đó nghĩa là bạn đã đi hết công thức."},"traps":["Dừng lại ở F. Bạn kể đặc điểm rất trôi chảy rồi im, tưởng đã thuyết phục xong — nhưng trong đầu người nghe vẫn còn một câu chưa được trả lời: “rồi sao?”","Bước B nói lại đúng cái đã nói ở F, chỉ đổi cách diễn đạt. Nếu bỏ bước B đi mà câu vẫn đủ ý thì nghĩa là bạn chưa thật sự có bước B.","Nói quá ở bước A. “别人都做不到” mà người nghe biết là không đúng thì cả ba bước mất giá trị cùng lúc."],"tasks":[{"title":"Bài tập 1 — Viết tiếp cho bốn câu đang dừng ở F","lead":"Bốn câu dưới đây mới nói xong đặc điểm. Hãy viết tiếp bước A và bước B cho từng câu. Người nghe mặc định là phụ huynh của một học sinh lớp 8.","material":[{"t":"① 我们的课每节课都录像。","k":"zh"},{"t":"② 这本书后面附了五百个常用搭配。","k":"zh"},{"t":"③ 我们班每两周换一次同桌。","k":"zh"},{"t":"④ 助教每天在群里发一条打卡提醒。","k":"zh"}],"req":["Bước B bắt buộc bắt đầu bằng 对您来说，这意味着…… hoặc 您不用再……了。","Cấm nói lại đặc điểm ở bước B — nói lại nghĩa là bạn chưa chuyển được sang lợi ích.","Câu ③ là câu khó nhất. Nếu bí, thử hỏi: đổi chỗ ngồi thì đứa trẻ được lợi gì?"],"answer":[{"t":"Đáp án tham khảo cho câu ① và câu ④","k":"lbl"},{"t":"① 我们的课每节课都录像。和一般的面授班相比，错过一次也能补回来。对您来说，这意味着孩子生病请假，您不用担心他跟不上。","k":"zh"},{"t":"④ 助教每天在群里发一条打卡提醒。别的班大多是家长自己盯。这样一来，您不用再每天追着问孩子写没写作业了。","k":"zh"},{"t":"Câu ③ là câu khó nhất, vì đổi chỗ ngồi nghe như chuyện vặt. Nếu bạn nối được tới 「孩子不会只跟一个人说话，口语练得更多」 thì bạn đã nắm được công thức.","k":"vn"}]},{"title":"Bài tập 2 — Cùng một thứ, đổi người nghe thì B phải đổi","lead":"Chọn một thứ bạn thật sự đang dùng (một app, một quán, một thói quen, một khoá học). Nói FAB hai lượt: bước F và A giữ nguyên, chỉ bước B được đổi.","material":[{"t":"第一遍：听的人是一位家长。","k":"zh"},{"t":"第二遍：听的人是一个跟你同龄的大学生。","k":"zh"}],"req":[],"answer":[{"t":"Bài nói mẫu — cùng một app học từ vựng, nói cho hai người nghe khác nhau","k":"lbl"},{"t":"【对家长】这个背单词的 app 每天只要十五分钟，错的词第二天会自动再出现。和一般的单词书相比，它不用自己整理错词本。对您来说，这意味着孩子不用您每天盯着复习，他自己就能坚持下来。","k":"zh"},{"t":"【对同龄的大学生】这个背单词的 app 每天只要十五分钟，错的词第二天会自动再出现。和一般的单词书相比，它不用自己整理错词本。对你来说，这意味着通勤路上十五分钟就能搞定，不用专门挤出时间来背。","k":"zh"},{"t":"【Với phụ huynh】App học từ này mỗi ngày chỉ mất mười lăm phút, từ sai hôm sau tự động hiện lại. So với sách từ vựng thông thường thì không phải tự ghi sổ từ sai. Với anh/chị, điều đó nghĩa là không phải ngày nào cũng kèm cháu ôn, cháu tự theo được. — 【Với bạn cùng tuổi】… Với cậu, điều đó nghĩa là mười lăm phút trên đường đi làm là xong, không phải cố nặn ra thời gian riêng để học.","k":"vn"},{"t":"Hai lượt giống nhau từng chữ ở bước F và A, chỉ khác ở bước B. Nếu bạn thấy mình phải đổi cả bước F thì nghĩa là lần đầu bạn đã nói F theo kiểu quảng cáo chứ chưa phải một sự thật kiểm chứng được.","k":"vn"}],"check":["Hai lượt nói của bạn có thật sự khác nhau ở bước B không, hay chỉ đổi cách xưng hô?","Bước B có nhắc tới một việc người nghe làm hằng ngày không?","Bước F còn là sự thật kiểm chứng được, hay đã bị nói quá thành quảng cáo?","Thử bỏ hẳn bước B đi mà đọc lại: câu có bị hụt không? Không hụt nghĩa là B của bạn thừa."]}]},"DESC":{"code":"DESC","no":"3","zh":"DESC 反馈法","vn":"Công thức góp ý — khi phải nói ra một điều khó nói mà vẫn muốn giữ quan hệ","when":"Nhắc đồng nghiệp trễ hạn, góp ý với bạn cùng nhóm, nói chuyện với người ở chung, phản ánh với hàng xóm. Đây là công thức khó nhất trong năm công thức, vì chỉ cần một chữ sai ở bước đầu là cả đoạn thành trách móc.","steps":[{"label":"D 描述事实","fn":"Chỉ nêu điều quan sát được, không kèm đánh giá","pats":["我注意到……","这个月有三次……","上周五的时候，……"]},{"label":"E 表达感受","fn":"Nói cảm nhận của mình, không quy kết động cơ người kia","pats":["说实话，我有点……","我有些担心的是……","这让我有点为难。"]},{"label":"S 提出方案","fn":"Đưa đề nghị cụ thể, làm được ngay","pats":["下次能不能……？","我想建议……","要不我们这样：……"]},{"label":"C 说明后果","fn":"Nói cái lợi nếu làm được — không phải lời doạ","pats":["这样的话，……","如果能做到这一点，我们就……","这样大家都省事。"]}],"bankNote":"Bước D quyết định cả đoạn. D đúng thì ba bước sau gần như tự chạy; D sai thì nói hay mấy cũng thành trách móc. Vì vậy phần khung câu của bước D đáng đọc kỹ gấp đôi ba bước còn lại.","bank":[{"label":"D 描述事实","note":"Chỉ nêu điều quan sát được, không kèm đánh giá","pats":[{"p":"我注意到……","when":"mở đầu nhẹ, báo hiệu “tôi quan sát thấy” chứ không phải “tôi kết tội”","ex":[{"zh":"我注意到这两周的作业你都是第二天早上才交。","vi":"Mình để ý hai tuần nay bài tập bạn đều sáng hôm sau mới nộp."},{"zh":"我注意到最近几次开会你都是最后一个到。","vi":"Mình để ý mấy lần họp gần đây bạn đều đến sau cùng."}]},{"p":"这个月有……次……","when":"có con số thì người nghe khó cãi mà cũng khó tự ái, vì con số không chê ai cả","ex":[{"zh":"这个月有三次是我一个人收的尾。","vi":"Tháng này có ba lần một mình mình làm nốt phần cuối."},{"zh":"这学期有四次课你请了假，都是周五那节。","vi":"Học kỳ này bạn nghỉ bốn buổi, đều là buổi thứ Sáu."}]},{"p":"上周五的时候，……","when":"chỉ muốn nói về MỘT lần cụ thể, không mở rộng thành “lúc nào cũng thế”","ex":[{"zh":"上周五的时候，材料发过来已经是晚上十点了。","vi":"Hôm thứ Sáu tuần trước, tài liệu gửi sang thì đã mười giờ tối."},{"zh":"昨天下午交接的时候，有两个文件没在里面。","vi":"Chiều qua lúc bàn giao, có hai file không nằm trong đó."}]}]},{"label":"E 表达感受","note":"Nói cảm nhận của chính mình, không quy kết động cơ người kia","pats":[{"p":"说实话，我有点……","when":"thừa nhận cảm xúc một cách tiết chế — chữ 有点 làm câu nhẹ hẳn đi","ex":[{"zh":"说实话，我有点着急，因为第二天上午就要用。","vi":"Thật lòng mình hơi sốt ruột, vì sáng hôm sau là phải dùng rồi."},{"zh":"说实话，我有点不好意思一直来催你。","vi":"Thật lòng mình cũng ngại khi cứ phải giục bạn mãi."}]},{"p":"我有些担心的是……","when":"hướng cảm xúc về hậu quả công việc chứ không về con người — an toàn nhất khi nói với cấp trên hoặc khách","ex":[{"zh":"我有些担心的是，这样下去进度会压到月底。","vi":"Điều em hơi lo là cứ thế này tiến độ sẽ dồn tới cuối tháng."},{"zh":"我有些担心的是学员那边会觉得我们不专业。","vi":"Điều em hơi lo là phía học viên sẽ thấy bên mình thiếu chuyên nghiệp."}]},{"p":"这让我有点为难。","when":"mình đang kẹt giữa hai bên — giọng than nhẹ mà không trách ai","ex":[{"zh":"家长问我进度，我没有材料可以回答，这让我有点为难。","vi":"Phụ huynh hỏi tiến độ mà em không có tài liệu để trả lời, cái đó làm em hơi khó xử."},{"zh":"这让我有点为难，因为我已经跟客户说了这周给。","vi":"Cái đó làm em hơi khó xử, vì em đã hẹn khách là tuần này gửi."}]}]},{"label":"S 提出方案","note":"Đưa một đề nghị cụ thể, làm được ngay","pats":[{"p":"下次能不能……？","when":"đề nghị một việc nhỏ, làm được ngay — hỏi thay vì yêu cầu thì giữ được thể diện cho người nghe","ex":[{"zh":"下次能不能提前一天发给我？哪怕只是草稿也行。","vi":"Lần sau gửi mình trước một ngày được không? Kể cả mới là bản nháp cũng được."},{"zh":"下次能不能在群里说一声？这样我好安排。","vi":"Lần sau báo một tiếng trong nhóm được không? Để mình còn sắp xếp."}]},{"p":"要不我们这样：……","when":"đề xuất một cách làm mới cho cả hai, không phải yêu cầu một phía phải đổi","ex":[{"zh":"要不我们这样：你负责前半部分，我来收尾，周四对一次。","vi":"Hay mình làm thế này: bạn lo nửa đầu, mình làm nốt phần cuối, thứ Năm khớp lại một lần."},{"zh":"要不我们这样：固定周三下午同步十分钟。","vi":"Hay mình làm thế này: cố định chiều thứ Tư trao đổi mười phút."}]},{"p":"我想建议……，您看行吗？","when":"nói với người trên hoặc với khách — thêm 您看行吗 là chừa sẵn đường thương lượng","ex":[{"zh":"我想建议把截止时间改到周四，您看行吗？","vi":"Em muốn đề xuất lùi hạn sang thứ Năm, anh/chị thấy được không ạ?"},{"zh":"我想建议这次先按老办法做，您看行吗？","vi":"Em muốn đề xuất lần này cứ làm theo cách cũ, anh/chị thấy được không ạ?"}]}]},{"label":"C 说明后果","note":"Nói cái lợi nếu làm được — đây là lời mời, không phải lời doạ","pats":[{"p":"这样的话，……","when":"nối thẳng từ đề nghị sang lợi ích, ngắn và không màu mè","ex":[{"zh":"这样的话，我周末就能先看一遍。","vi":"Như vậy cuối tuần mình xem trước được một lượt."},{"zh":"这样的话，大家都不用临时加班。","vi":"Như vậy mọi người đỡ phải tăng ca gấp."}]},{"p":"如果能做到这一点，我们就……","when":"lợi ích thuộc về cả nhóm — chữ 我们 kéo người nghe về cùng phía","ex":[{"zh":"如果能做到这一点，我们就能提前两天交。","vi":"Nếu làm được điểm này thì bên mình nộp sớm được hai ngày."},{"zh":"如果能做到这一点，我们就不用每次都返工。","vi":"Nếu làm được điểm này thì mình khỏi phải làm lại mỗi lần."}]},{"p":"这样你也省事，我也好安排。","when":"nói rõ hai bên cùng lợi — chặn trước cái cảm giác “rốt cuộc chỉ có lợi cho anh”","ex":[{"zh":"这样你也省事，我也好安排时间。","vi":"Như vậy bạn cũng đỡ việc, mình cũng dễ sắp xếp thời gian."},{"zh":"这样你不用反复改，我也能早点定下来。","vi":"Như vậy bạn không phải sửa đi sửa lại, mình cũng chốt được sớm."}]}]}],"sample":[{"t":"这个月的周报有三次是周一早上才发出来的。","k":"zh"},{"t":"说实话，我有点着急，因为我周一上午就要拿着它跟客户对方案。","k":"zh"},{"t":"下次能不能周五下班前发给我？哪怕只是一个草稿也行。","k":"zh"},{"t":"这样我周末就能先看一遍，周一开会也不至于临时翻资料。","k":"zh"},{"t":"Báo cáo tuần tháng này có ba lần đến sáng thứ Hai mới gửi. Thật lòng là em hơi sốt ruột, vì sáng thứ Hai em phải cầm nó đi trao đổi phương án với khách. Lần sau anh/chị gửi em trước giờ tan làm thứ Sáu được không ạ? Kể cả mới là bản nháp cũng được. Như vậy cuối tuần em xem trước được một lượt, thứ Hai họp cũng không phải lật tài liệu gấp.","k":"vn"}],"contrast":{"badLbl":"Đánh giá — người nghe lập tức phòng thủ","bad":"你总是拖延，每次都要催你。","goodLbl":"Sự thật — người nghe khó cãi lại","good":"这个月的周报有三次是周一早上才发出来的。","note":"Cách tự kiểm bước D chỉ bằng một câu hỏi: 「这句话能用录像证明吗？」 Quay phim lại được thì là sự thật, giữ nguyên. Không quay được thì là đánh giá — viết lại trước khi mở miệng."},"traps":["Bước C biến thành lời doạ: “不然我就跟经理说了。” Bước C phải là cái lợi chung, không phải hậu quả xấu dành cho người kia.","Bước E thành đoán bụng dạ người khác: “你是不是不想做？” Bạn chỉ được nói cảm nhận của chính mình.","Vòng vo quá lâu trước khi vào bước D. Người nghe ngồi chờ bạn vào đề còn căng thẳng hơn là nghe thẳng ngay từ câu đầu."],"tasks":[{"title":"Bài tập 1 — Phân loại sự thật và đánh giá, rồi viết lại","lead":"Đọc sáu câu dưới đây. Câu nào là 事实, câu nào là 评价? Những câu 评价 thì viết lại thành 事实. Làm một mình trong 4 phút.","material":[{"t":"① 你总是迟到。","k":"zh"},{"t":"② 这个月你有三次是九点二十才到。","k":"zh"},{"t":"③ 你根本不在乎这个项目。","k":"zh"},{"t":"④ 上周三的材料我等到了下午三点。","k":"zh"},{"t":"⑤ 你一点责任心都没有。","k":"zh"},{"t":"⑥ 你老是忘事儿。","k":"zh"}],"req":["Thước đo duy nhất: 这句话能用录像或者聊天记录证明吗？","Viết lại thì phải có con số hoặc mốc thời gian, không được dùng 总是 · 每次 · 从来 · 老是."],"answer":[{"t":"Đáp án tham khảo","k":"lbl"},{"t":"事实：② ④。 评价：① ③ ⑤ ⑥。","k":"zh"},{"t":"① → 这个星期有两天你是九点二十以后到的。","k":"zh"},{"t":"③ → 上次讨论方案的时候，你没有提出意见，会后也没回我的消息。","k":"zh"},{"t":"⑤ → 这个月交上来的三份材料都是别人帮你补完的。","k":"zh"},{"t":"⑥ → 上周我提醒过两次的事，昨天开会时又忘了带。","k":"zh"},{"t":"Câu ⑤ đáng dừng lại lâu nhất. Nhiều người viết lại thành 「你做事不认真」 — vẫn là đánh giá, chỉ đổi chữ. Dấu hiệu nhận ra: câu mới vẫn không quay phim được.","k":"vn"}]},{"title":"Bài tập 2 — Đóng vai ba tình huống khó","lead":"Chọn một trong ba tình huống dưới đây, nói đủ bốn bước trong 60 giây. Nếu luyện cùng bạn, người kia được phép phản ứng một câu — bạn phải xử lý tiếp mà không bỏ công thức.","material":[{"t":"甲：室友三个星期把碗放在水池里过夜。","k":"zh"},{"t":"乙：合租的人半夜打游戏，声音很大。","k":"zh"},{"t":"丙：同组的同学每次都在截止前一小时才交自己那部分。","k":"zh"}],"req":[],"answer":[{"t":"Bài nói mẫu — tình huống 甲, kèm cách xử lý khi bị phản ứng","k":"lbl"},{"t":"D　这三个星期，碗基本上都是第二天早上才洗。","k":"zh"},{"t":"E　说实话我有点别扭，因为我早上做饭的时候水池是满的。","k":"zh"},{"t":"S　下次能不能吃完先泡上，睡前刷一下？十分钟的事。","k":"zh"},{"t":"C　这样早上谁先起来都能直接用，不用先腾地方。","k":"zh"},{"t":"对方：「我最近真的太忙了。」","k":"zh"},{"t":"接法：我知道你这阵子忙。那要不这样：忙的时候你先泡着，我早上顺手刷了，周末那两天你负责一下，行吗？","k":"zh"},{"t":"D Ba tuần nay bát về cơ bản đều sáng hôm sau mới rửa. E Thật lòng mình thấy hơi vướng, vì sáng mình nấu ăn thì bồn đang đầy. S Lần sau ăn xong ngâm luôn, trước khi ngủ rửa một lượt được không? Có mười phút thôi. C Như vậy sáng ai dậy trước cũng dùng được ngay, không phải dọn chỗ. — Người kia: “Dạo này tớ bận thật mà.” — Nối tiếp: Mình biết dạo này cậu bận. Hay thế này: lúc bận thì cậu cứ ngâm, sáng mình rửa luôn, hai ngày cuối tuần cậu lo nhé?","k":"vn"},{"t":"Chỗ đáng chú ý nhất là câu cuối. Bị phản ứng thì không bỏ công thức và cũng không chuyển sang trách móc — quay lại bước S với một đề nghị dễ thực hiện hơn.","k":"vn"}],"check":["Bước D có lọt chữ 总是 hay 每次 vào không? Có là phải nói lại từ đầu.","Bước E có biến thành đoán bụng dạ người kia không? (你是不是不想做)","Bước S có phải một việc làm được ngay trong tuần này, hay vẫn còn chung chung?","Bước C là cái lợi chung, hay đã thành lời doạ? (不然我就……)"]}]},"3W":{"code":"3W","no":"4","zh":"3W 开场法","vn":"Công thức phá băng — khi bắt chuyện với người chưa quen","when":"Hội thảo, tiệc công ty, lớp học mới, gặp đối tác lần đầu. Mục tiêu không phải nói hay, mà là làm cho người kia nói — và có cớ để nói tiếp lượt thứ hai, thứ ba. Công thức này có ba câu hỏi, nhưng thứ quyết định lại là câu đáp bạn chèn vào giữa.","steps":[{"label":"W1 做什么","fn":"Hỏi lĩnh vực — dễ trả lời nhất, ai cũng đáp được","pats":["您好，我是……，在……做……。您是做哪方面的？","请问您是哪个领域的？"]},{"label":"W2 从哪来","fn":"Hỏi xuất phát điểm — mở ra chuyện địa phương, công ty","pats":["您是从哪个公司过来的？","您也是本地的吗？","您是专程过来的吗？"]},{"label":"W3 为什么来","fn":"Hỏi mục đích — lộ ra mối quan tâm chung","pats":["您今天主要是冲哪一场来的？","您对哪个环节比较感兴趣？","您是怎么知道这个活动的？"]}],"bankNote":"Phần dưới có bốn nhóm, không phải ba: nhóm thứ tư là 回应句 — câu đáp lại. Nó không nằm trong tên công thức nhưng là thứ quyết định cuộc nói chuyện có sang được lượt thứ tư hay không.","bank":[{"label":"W1 做什么","note":"Hỏi lĩnh vực — câu dễ trả lời nhất, ai cũng đáp được","pats":[{"p":"您好，我是……，在……做……。您是做哪方面的？","when":"mở đầu chuẩn mực: tự giới thiệu trước rồi mới hỏi, không hỏi trống không","ex":[{"zh":"您好，我是小陈，在一家语言培训机构教中文。您是做哪方面的？","vi":"Chào anh, tôi là Tiểu Trần, dạy tiếng Trung ở một trung tâm ngoại ngữ. Anh làm mảng nào ạ?"},{"zh":"您好，我是阮草，从越南来的，在读国际中文教育。您是哪个方向的？","vi":"Chào chị, em là Nguyễn Thảo, từ Việt Nam sang, đang học Giáo dục Hán ngữ Quốc tế. Chị theo hướng nào ạ?"}]},{"p":"看您刚才……，您应该是做……的吧？","when":"đã quan sát được một chi tiết — mở lời kiểu này tự nhiên hơn hẳn hỏi suông","ex":[{"zh":"看您刚才的提问，您应该是做人力这块的吧？","vi":"Nghe câu anh vừa hỏi, chắc anh làm mảng nhân sự nhỉ?"},{"zh":"看您记了那么多笔记，您是来做调研的吧？","vi":"Thấy chị ghi nhiều ghi chú thế, chắc chị đến khảo sát à?"}]},{"p":"咱们这场人挺多的，您也是冲这个主题来的吗？","when":"chưa biết gì về người kia — bắt đầu từ thứ cả hai đang cùng nhìn thấy","ex":[{"zh":"咱们这场人挺多的，您也是冲这个主题来的吗？","vi":"Phiên này đông người nhỉ, anh cũng đến vì chủ đề này ạ?"},{"zh":"这咖啡排了十分钟，您也等了半天了吧？","vi":"Cà phê này xếp hàng mười phút, chắc chị cũng chờ lâu rồi nhỉ?"}]}]},{"label":"W2 从哪来","note":"Hỏi xuất phát điểm — mở ra chuyện nơi chốn, công ty, đường đi","pats":[{"p":"您是从哪个公司/学校过来的？","when":"câu hỏi thẳng nhất, dùng được ở hội thảo và tiệc công ty","ex":[{"zh":"您是从哪个公司过来的？我看名牌上没写。","vi":"Anh từ công ty nào sang ạ? Em thấy thẻ tên không ghi."},{"zh":"您是从哪个学校过来的？我是师范大学的。","vi":"Chị từ trường nào tới ạ? Em ở Đại học Sư phạm."}]},{"p":"您也是本地的吗？","when":"muốn biết có cùng thành phố không — mở ra chuyện ăn ở, đi lại, thời tiết","ex":[{"zh":"您也是本地的吗？我是去年才搬过来的。","vi":"Anh cũng người ở đây ạ? Tôi năm ngoái mới chuyển tới."},{"zh":"您也是本地的吗？那您知道附近哪儿吃饭方便吗？","vi":"Chị cũng ở đây ạ? Vậy chị biết gần đây ăn uống chỗ nào tiện không?"}]},{"p":"您是专程过来的吗？","when":"đoán người kia đi xa tới — dễ dẫn sang chuyện tàu xe, khách sạn, mất mấy tiếng","ex":[{"zh":"您是专程过来的吗？路上得花不少时间吧。","vi":"Anh đi riêng một chuyến tới đây ạ? Chắc đường đi mất khá nhiều thời gian."},{"zh":"您是专程过来的吗？还是顺路来看看？","vi":"Chị đi riêng tới đây, hay tiện đường ghé xem?"}]}]},{"label":"W3 为什么来","note":"Hỏi mục đích — chỗ lộ ra mối quan tâm chung của hai người","pats":[{"p":"您今天主要是冲哪一场来的？","when":"ở hội thảo hoặc sự kiện nhiều phiên — câu này gần như chắc chắn tìm ra điểm chung","ex":[{"zh":"您今天主要是冲哪一场来的？我看下午那场报名的人最多。","vi":"Hôm nay anh chủ yếu đến vì phiên nào ạ? Em thấy phiên chiều đăng ký đông nhất."},{"zh":"您今天主要是冲哪一场来的？我是冲上午那位老师来的。","vi":"Hôm nay chị chủ yếu đến vì phiên nào? Em đến vì thầy nói buổi sáng."}]},{"p":"您对哪个环节比较感兴趣？","when":"nội dung nhiều, chưa biết người kia quan tâm gì — hỏi vậy để chọn chuyện mà nói tiếp","ex":[{"zh":"这次内容挺多的，您对哪个环节比较感兴趣？","vi":"Lần này nội dung khá nhiều, anh quan tâm phần nào hơn ạ?"},{"zh":"您对哪个环节比较感兴趣？我对第三个案例最感兴趣。","vi":"Chị quan tâm phần nào hơn ạ? Em thấy ca thứ ba thú vị nhất."}]},{"p":"您是怎么知道这个活动的？","when":"câu an toàn khi hai câu trên đã dùng rồi — câu trả lời thường kéo theo một người quen chung","ex":[{"zh":"您是怎么知道这个活动的？我是朋友转给我的。","vi":"Anh biết sự kiện này qua đâu ạ? Em được bạn chuyển cho."},{"zh":"您是怎么知道这个活动的？我差点就错过了。","vi":"Chị biết sự kiện này qua đâu ạ? Em suýt nữa thì lỡ mất."}]}]},{"label":"回应句","note":"Câu đáp lại chèn giữa các W — thiếu nó thì ba câu hỏi thành hỏi cung","pats":[{"p":"那挺有意思的，……","when":"người kia vừa nói nghề nghiệp hoặc một việc lạ tai — đáp lại rồi hỏi thêm một ý nhỏ","ex":[{"zh":"那挺有意思的，那你们平时也接学校的项目吗？","vi":"Thú vị thật, vậy bên anh bình thường có nhận dự án của trường không?"},{"zh":"那挺有意思的，我还是第一次遇到做这块的。","vi":"Thú vị thật, đây là lần đầu tôi gặp người làm mảng này."}]},{"p":"那够辛苦的。","when":"người kia vừa kể một việc mất công — một câu công nhận ngắn, đừng dài","ex":[{"zh":"从苏州一早过来，那够辛苦的。","vi":"Sáng sớm từ Tô Châu sang, vất vả thật đấy."},{"zh":"一个人带两个班，那够辛苦的。","vi":"Một mình dạy hai lớp, vất vả thật đấy."}]},{"p":"原来是这样，我还以为……","when":"điều người kia nói khác với mình đoán — câu này thừa nhận mình đoán sai, nghe rất thật","ex":[{"zh":"原来是这样，我还以为您是主办方的。","vi":"Ra là vậy, tôi cứ tưởng anh là bên tổ chức."},{"zh":"原来是这样，我还以为这个班是面向老师的。","vi":"Ra là vậy, tôi cứ tưởng lớp này dành cho giáo viên."}]}]}],"sample":[{"t":"甲：您好，我是小杨，在一家做教育科技的公司负责内容。您是做哪方面的？","k":"zh"},{"t":"乙：我做人力资源，在一家制造业公司。","k":"zh"},{"t":"甲：那挺有意思的。您是专程从外地过来的吗？","k":"zh"},{"t":"乙：对，从苏州过来，昨天刚到。","k":"zh"},{"t":"甲：那够辛苦的。您今天主要是想听哪一场？我看下午那场可能跟我们俩都有关系。","k":"zh"},{"t":"A: Chào anh, tôi là Tiểu Dương, phụ trách nội dung ở một công ty công nghệ giáo dục. Anh làm mảng nào ạ? — B: Tôi làm nhân sự, ở một công ty sản xuất. — A: Thú vị thật. Anh đi từ tỉnh khác tới à? — B: Đúng rồi, từ Tô Châu, hôm qua mới tới. — A: Vậy cũng vất vả. Hôm nay anh định nghe phiên nào? Tôi thấy phiên chiều có khi liên quan tới cả hai chúng ta.","k":"vn"}],"contrast":{"badLbl":"Hỏi liền ba câu — người kia thấy mệt","bad":"您是做哪方面的？……您是从哪儿来的？……您今天为什么来？","goodLbl":"Có câu đáp xen giữa — người kia muốn nói tiếp","good":"您是做哪方面的？——那挺有意思的。您是专程过来的吗？——那够辛苦的。","note":"Ba câu đáp đáng thuộc nhất: 「那挺有意思的。」 · 「那够辛苦的。」 · 「原来是这样，我还以为……」 Mỗi câu không quá tám chữ."},"traps":["Hỏi đủ ba câu mà không đáp lại gì ở giữa — thành hỏi cung. Người kia trả lời xong câu thứ hai là bắt đầu tìm cách rút lui.","Câu đáp dài quá. Bạn đáp lại rồi kể luôn chuyện của mình ba dòng — lượt nói đã bị bạn lấy mất, người kia không còn gì để nói tiếp.","Hỏi W3 quá sớm. Chưa biết người ta làm gì mà đã hỏi “hôm nay anh đến vì cái gì” thì câu hỏi rơi vào khoảng không."],"tasks":[{"title":"Bài tập 1 — Xếp lại hội thoại và bù câu đáp còn thiếu","lead":"Sáu lượt dưới đây đã bị xáo trộn, và đoạn này còn thiếu hai câu đáp lại. Hãy xếp lại theo thứ tự W1 → W2 → W3 và chèn thêm hai câu 回应.","material":[{"t":"① 乙：我做人力资源，在一家制造业公司。","k":"zh"},{"t":"② 甲：您今天主要是冲哪一场来的？","k":"zh"},{"t":"③ 甲：您好，我是小杨，在一家教育科技公司做内容。您是做哪方面的？","k":"zh"},{"t":"④ 乙：对，从苏州过来，昨天刚到。","k":"zh"},{"t":"⑤ 乙：主要想听下午讲招聘那一场。","k":"zh"},{"t":"⑥ 甲：您是专程过来的吗？","k":"zh"}],"req":["Chèn câu đáp vào sau lượt ① và sau lượt ④.","Câu đáp không được dài hơn tám chữ — dài hơn là bạn đang lấy mất lượt của người kia."],"answer":[{"t":"Đáp án tham khảo","k":"lbl"},{"t":"③ → ① → 「那挺有意思的。」 → ⑥ → ④ → 「那够辛苦的。」 → ② → ⑤","k":"zh"},{"t":"Bạn đáp khác cũng được, miễn ngắn và đúng chỗ: sau ① dùng 「原来是这样，我还以为您是主办方的。」 cũng đạt. Chỗ sai hay gặp là chèn một câu đáp dài ba dòng, kể luôn chuyện của mình — lúc đó người kia còn muốn nói nữa không?","k":"vn"}]},{"title":"Bài tập 2 — Vòng tròn danh tính, ba lượt đổi bạn","lead":"Bốc một thẻ danh tính (nghề nghiệp + thành phố + lý do đến) và đóng vai người đó. Bắt chuyện với bạn cùng lớp, đi đủ 3W, rồi đổi người. Làm ba vòng, mỗi vòng 3 phút.","material":[{"t":"卡片示例：做建筑设计 / 从成都来 / 替老板来听的","k":"zh"},{"t":"卡片示例：在医院做护士 / 本地人 / 朋友转发才知道的","k":"zh"},{"t":"卡片示例：读研二 / 从越南来 / 想找实习机会","k":"zh"}],"req":[],"answer":[{"t":"Bài nói mẫu — thẻ 「读研二 / 从越南来 / 想找实习机会」","k":"lbl"},{"t":"甲：您好，我是小林，在一家做出海电商的公司做运营。您是做哪方面的？","k":"zh"},{"t":"乙：我还在读书，研二，国际中文教育方向。","k":"zh"},{"t":"甲：那挺有意思的。您是本地的吗？","k":"zh"},{"t":"乙：不是，我从越南来的，来这儿两年了。","k":"zh"},{"t":"甲：来两年说得这么好，那够不容易的。您今天主要是冲哪一场来的？","k":"zh"},{"t":"乙：我想听下午讲实习和就业那场，我明年要找实习。","k":"zh"},{"t":"甲：那您一定要去。我们公司上个月也招了两个实习生，回头加个微信，有消息我发您。","k":"zh"},{"t":"A: Chào bạn, mình là Tiểu Lâm, làm vận hành ở một công ty thương mại điện tử xuyên biên giới. Bạn làm mảng nào? — B: Mình còn đi học, năm hai cao học, ngành Giáo dục Hán ngữ Quốc tế. — A: Thú vị thật. Bạn người ở đây à? — B: Không, mình từ Việt Nam sang, ở đây hai năm rồi. — A: Mới hai năm mà nói giỏi thế, không dễ đâu. Hôm nay bạn chủ yếu đến vì phiên nào? — B: Mình muốn nghe phiên chiều về thực tập và việc làm, sang năm mình phải tìm thực tập. — A: Vậy nhất định phải đi. Công ty mình tháng trước cũng tuyển hai thực tập sinh, lát kết bạn WeChat, có tin mình gửi bạn.","k":"vn"},{"t":"Đếm thử: ba câu hỏi, nhưng có tới ba câu đáp xen giữa — 那挺有意思的 · 那够不容易的 · 那您一定要去. Và lượt cuối là một câu nối quan hệ. Đó mới là thứ làm cuộc nói chuyện có lần sau.","k":"vn"}],"check":["Giữa mỗi W bạn có chèn ít nhất một câu đáp lại không?","Có câu hỏi nào bạn hỏi hai lần theo cùng một cách không?","Câu đáp của bạn dài bao nhiêu chữ? Quá tám chữ là bạn đang lấy mất lượt của người kia.","Vòng cuối thêm một yêu cầu cho chính mình: kết bằng một câu nối quan hệ — 加个微信吧 · 下午那场一起去？ · 回头把那个链接发您。"]}]},"PREP":{"code":"PREP","no":"5","zh":"PREP 观点表达法","vn":"Công thức nêu quan điểm — khi phát biểu trong cuộc họp hoặc bị hỏi ý kiến đột ngột","when":"Họp hành, phỏng vấn, bảo vệ đề án, bị gọi tên hỏi ý kiến khi chưa kịp chuẩn bị. Ưu điểm lớn nhất của công thức này: nghĩ ra được một ý là nói được ngay, không cần soạn trước. Đây cũng là công thức bạn dùng được sớm nhất.","steps":[{"label":"P 观点","fn":"Nói kết luận trước, một câu","pats":["我的看法是……","我倾向于……","我不太赞成这个做法。"]},{"label":"R 理由","fn":"Một đến hai lý do, đánh số rõ ràng","pats":["主要有两个原因：一是……，二是……","原因很简单：……"]},{"label":"E 例子","fn":"Một ví dụ cụ thể, có số liệu càng tốt","pats":["比如说……","就拿去年那次来说，……","我自己遇到过一次：……"]},{"label":"P 重申观点","fn":"Quay lại quan điểm, kèm đề nghị hành động","pats":["所以我还是建议……","综合来看，我认为……","这就是我倾向于……的原因。"]}],"bankNote":"Chỗ phân biệt một người nói khá với một người nói giỏi nằm ở bước E. Lý do thì ai cũng nêu được; ví dụ cụ thể mới là thứ làm người nghe tin.","bank":[{"label":"P 观点","note":"Nói kết luận trước, đúng một câu","pats":[{"p":"我的看法是……","when":"trung tính nhất, dùng được với cả cấp trên lẫn đồng nghiệp","ex":[{"zh":"我的看法是这次活动应该放在线上。","vi":"Ý tôi là sự kiện lần này nên làm online."},{"zh":"我的看法是先做一个小范围的试点。","vi":"Ý tôi là làm thử ở quy mô nhỏ trước đã."}]},{"p":"我倾向于……","when":"có nhiều phương án trên bàn và mình chọn một — nhẹ hơn 我认为, chừa chỗ cho người khác","ex":[{"zh":"我倾向于第二个方案，虽然慢一点。","vi":"Tôi nghiêng về phương án hai, tuy chậm hơn một chút."},{"zh":"我倾向于再等一个月看数据。","vi":"Tôi nghiêng về chờ thêm một tháng để xem số liệu."}]},{"p":"我不太赞成这个做法，原因是……","when":"phải phản đối — thêm 不太 và nói ngay lý do thì không thành đối đầu","ex":[{"zh":"我不太赞成现在涨价，原因是老学员还没续费。","vi":"Tôi không tán thành tăng giá lúc này lắm, lý do là học viên cũ chưa đóng tiếp."},{"zh":"我不太赞成取消线下班，原因是家长更信任面授。","vi":"Tôi không tán thành bỏ lớp offline lắm, lý do là phụ huynh tin lớp trực tiếp hơn."}]}]},{"label":"R 理由","note":"Một đến hai lý do, đánh số rõ ràng","pats":[{"p":"主要有两个原因：一是……，二是……","when":"dạng chắc chắn nhất — người nghe đếm được thì nhớ được; đừng quá ba lý do","ex":[{"zh":"主要有两个原因：一是预算有限，二是参加的人分布在好几个城市。","vi":"Chủ yếu vì hai lý do: một là ngân sách có hạn, hai là người tham gia rải rác ở mấy thành phố."},{"zh":"主要有两个原因：一是老师排不开，二是教室不够。","vi":"Chủ yếu vì hai lý do: một là giáo viên không xếp được lịch, hai là không đủ phòng."}]},{"p":"原因很简单：……","when":"chỉ có một lý do và lý do đó đủ mạnh — nói vậy nghe dứt khoát","ex":[{"zh":"原因很简单：我们没有第二次机会跟这个客户谈。","vi":"Lý do rất đơn giản: mình không có lần thứ hai để nói chuyện với khách này."},{"zh":"原因很简单：学员最怕的就是换老师。","vi":"Lý do rất đơn giản: thứ học viên sợ nhất là đổi giáo viên."}]},{"p":"最主要的一点是……","when":"có nhiều lý do nhưng muốn dồn trọng lượng vào một cái — hợp khi thời gian phát biểu ngắn","ex":[{"zh":"最主要的一点是，这样做对老学员不公平。","vi":"Điểm quan trọng nhất là làm vậy không công bằng với học viên cũ."},{"zh":"最主要的一点是，我们还没验证过这个假设。","vi":"Điểm quan trọng nhất là mình chưa kiểm chứng giả định này."}]}]},{"label":"E 例子","note":"Một ví dụ cụ thể, có số liệu càng tốt","pats":[{"p":"比如说……","when":"ví dụ chung chung, ai cũng hình dung được — nhẹ nhất trong ba dạng","ex":[{"zh":"比如说，上个月线上那场，报名一百二，到场九十多。","vi":"Ví dụ buổi online tháng trước, đăng ký 120, có mặt hơn 90."},{"zh":"比如说，很多家长其实下班以后才有空回消息。","vi":"Ví dụ nhiều phụ huynh thật ra tan làm rồi mới rảnh trả lời tin nhắn."}]},{"p":"就拿去年那次来说，……","when":"có một sự việc cả phòng đều nhớ — dẫn lại thì không ai cãi được","ex":[{"zh":"就拿去年那次线下活动来说，场地和交通就花掉了一半预算。","vi":"Cứ lấy sự kiện offline năm ngoái mà nói, riêng địa điểm với đi lại đã ngốn nửa ngân sách."},{"zh":"就拿上一期那个班来说，三个人中途转到了周末班。","vi":"Cứ lấy lớp khoá trước mà nói, ba người giữa chừng chuyển sang lớp cuối tuần."}]},{"p":"我自己就遇到过一次：……","when":"trải nghiệm của chính mình — thuyết phục nhất, nhưng chỉ nói một lần trong một lượt phát biểu","ex":[{"zh":"我自己就遇到过一次：学员因为堵车迟到，结果整节课都没跟上。","vi":"Chính tôi từng gặp một lần: học viên tắc đường đến muộn, kết quả cả buổi theo không kịp."},{"zh":"我自己就遇到过一次：改了时间没通知，第二天来了两个人。","vi":"Chính tôi từng gặp một lần: đổi giờ mà không báo, hôm sau có hai người tới."}]}]},{"label":"P 重申观点","note":"Quay lại quan điểm, kèm một đề nghị hành động","pats":[{"p":"所以我还是建议……","when":"kết thúc bằng hành động cụ thể — chữ 还是 cho thấy mình đã cân nhắc rồi mới chốt","ex":[{"zh":"所以我还是建议改成线上，把省下来的钱放到内容上。","vi":"Vậy nên tôi vẫn đề xuất chuyển sang online, lấy tiền tiết kiệm được đầu tư vào nội dung."},{"zh":"所以我还是建议这个月先不涨价。","vi":"Vậy nên tôi vẫn đề xuất tháng này chưa tăng giá."}]},{"p":"综合来看，我认为……","when":"đã nêu nhiều mặt, nay gom lại — trang trọng, hợp họp lớn và bảo vệ đề án","ex":[{"zh":"综合来看，我认为分两批开班风险最小。","vi":"Nhìn tổng thể, tôi cho rằng mở lớp làm hai đợt là ít rủi ro nhất."},{"zh":"综合来看，我认为值得再试一个学期。","vi":"Nhìn tổng thể, tôi cho rằng đáng thử thêm một học kỳ."}]},{"p":"这就是我倾向于……的原因。","when":"kết bằng cách buộc lại với câu mở đầu — người nghe có cảm giác đoạn nói đã khép kín","ex":[{"zh":"这就是我倾向于线上的原因。","vi":"Đó là lý do tôi nghiêng về phương án online."},{"zh":"这就是我倾向于先试点再推广的原因。","vi":"Đó là lý do tôi nghiêng về làm thử trước rồi mới nhân rộng."}]}]}],"sample":[{"t":"我认为这次活动应该放在线上。","k":"zh"},{"t":"主要有两个原因：一是预算有限，二是参加的人分布在好几个城市。","k":"zh"},{"t":"比如去年那次线下活动，光场地和交通就花掉了一半预算，最后到场率还不到六成。","k":"zh"},{"t":"所以我还是建议改成线上，把省下来的钱放到内容上。","k":"zh"},{"t":"Tôi cho rằng sự kiện lần này nên làm online. Chủ yếu vì hai lý do: một là ngân sách có hạn, hai là người tham gia rải rác ở mấy thành phố. Ví dụ sự kiện offline năm ngoái, riêng địa điểm và đi lại đã ngốn một nửa ngân sách, cuối cùng tỷ lệ có mặt chưa tới sáu phần. Vậy nên tôi vẫn đề xuất chuyển sang online, lấy phần tiền tiết kiệm được đầu tư vào nội dung.","k":"vn"}],"contrast":{"badLbl":"Không khung — 38 chữ mà không ai nhớ được ý","bad":"呃，我觉得线上也行吧，因为线下挺贵的，而且大家住得也挺远，去年好像到场率也不高，所以……我也说不好，看大家吧。","goodLbl":"Có khung — cùng lượng chữ, ý rõ","good":"我认为应该放在线上。一是预算有限，二是人分散在好几个城市。去年线下场地加交通花掉一半预算，到场率不到六成。所以我建议改线上。","note":"Hai đoạn này gần bằng nhau về số chữ và nội dung. Khác nhau ở chỗ đoạn sau đặt kết luận lên đầu và đánh số lý do. Thử đếm chữ hai đoạn — bạn sẽ thấy “nói gọn” không phải là nói ít, mà là nói có thứ tự."},"traps":["Quan điểm nằm ở câu thứ ba, thứ tư. Người nghe đã nghe hai câu mà vẫn chưa biết bạn đứng về phía nào.","Viết ví dụ thành một lý do thứ ba: “而且学生也累” vẫn là R, không phải E. Ví dụ phải là một việc đã xảy ra, có thời gian và con số.","Kết thúc bằng cách tắt dần rồi im, hoặc bằng “大家看着办吧”. Bước P cuối phải có một hành động cụ thể."],"tasks":[{"title":"Bài tập 1 — Cho sẵn P và R, viết tiếp E và P","lead":"Ba đoạn dưới đây mới có quan điểm và lý do. Hãy viết tiếp một ví dụ cụ thể và một câu chốt cho từng đoạn. Viết trong 3 phút, sau đó đứng lên nói, không cầm giấy.","material":[{"t":"① 我认为新班应该控制在八个人以内。主要有两个原因：一是口语课人多了开不了口，二是老师记不住每个人的问题。","k":"zh"},{"t":"② 我倾向于把作业改成每周一次。原因很简单：现在两天一次，大部分人是抄完交差。","k":"zh"},{"t":"③ 我不太赞成现在就加开周末班，最主要的一点是我们没有多余的老师。","k":"zh"}],"req":["Ví dụ phải có ít nhất một con số hoặc một mốc thời gian.","Câu chốt phải chứa một hành động cụ thể, không được kết bằng 大家看着办吧."],"answer":[{"t":"Đáp án tham khảo cho câu ②","k":"lbl"},{"t":"我倾向于把作业改成每周一次。原因很简单：现在两天一次，大部分人是抄完交差。就拿上个月来说，十五个人里有九个人的作业是上课前十分钟赶出来的，错的地方还都一样。所以我还是建议改成每周一次，但要求每次写够三百字。","k":"zh"},{"t":"Chỗ hay hỏng: viết ví dụ thành một lý do thứ ba. 「而且学生也累」 vẫn là R, không phải E. Ví dụ phải là một việc đã xảy ra, có thời gian và con số.","k":"vn"}]},{"title":"Bài tập 2 — 20 giây nghĩ, 40 giây nói","lead":"Nhờ ai đó chỉ cho bạn một câu trong bốn câu dưới đây (hoặc tự chỉ đại một câu không nhìn). Cho mình đúng 20 giây nghĩ, rồi nói 40 giây theo PREP. Ghi âm lại để tự nghe — nghe lại chính mình là cách sửa nhanh nhất.","material":[{"t":"① 你觉得该不该在朋友圈屏蔽同事？","k":"zh"},{"t":"② 学语言到底要不要背课文？","k":"zh"},{"t":"③ 第一份工作，钱重要还是成长重要？","k":"zh"},{"t":"④ 老师该不该在微信上随时回学生的问题？","k":"zh"}],"req":[],"answer":[{"t":"Bài nói mẫu — câu ①「该不该在朋友圈屏蔽同事」","k":"lbl"},{"t":"我觉得没必要屏蔽，但可以分组。","k":"zh"},{"t":"主要有两个原因：一是屏蔽一旦被发现，解释起来更麻烦；二是同事也是人脉，完全隔开反而少了机会。","k":"zh"},{"t":"我自己就遇到过一次：我屏蔽了一个同事，结果他在别人手机上看到了我发的内容，后来见面挺尴尬的。","k":"zh"},{"t":"所以我还是建议用分组：工作相关的对同事开放，生活内容只给朋友看。","k":"zh"},{"t":"Tôi thấy không cần chặn, nhưng có thể chia nhóm. Chủ yếu vì hai lý do: một là chặn mà bị phát hiện thì giải thích còn phiền hơn; hai là đồng nghiệp cũng là quan hệ, cắt hẳn ra lại mất cơ hội. Chính tôi từng gặp một lần: tôi chặn một đồng nghiệp, kết quả anh ấy nhìn thấy bài của tôi trên điện thoại người khác, sau đó gặp nhau khá ngượng. Vậy nên tôi vẫn đề xuất chia nhóm: nội dung liên quan công việc thì mở cho đồng nghiệp, chuyện đời sống chỉ để bạn bè xem.","k":"vn"},{"t":"Nói 40 giây được khoảng 90–110 chữ Hán; bài mẫu này 96 chữ. Nếu bạn nói hết 40 giây mà chưa tới bước E thì phần lý do đang dài quá — cắt xuống còn hai lý do, mỗi lý do một dòng.","k":"vn"}],"check":["Quan điểm có nằm ở câu đầu tiên không? Nằm ở câu thứ ba là chưa đạt.","Lý do của bạn có được đánh số không?","Ví dụ có cụ thể tới mức người nghe hình dung ra được cảnh không?","Câu cuối có quay lại quan điểm không, hay tắt dần rồi im?","Nói lại lần hai: rút xuống 25 giây, và không được dùng lại ví dụ của lần một."]}]}},"leadin":{"q":"同样一件事，为什么第二个人说完，领导就点头了？","badLbl":"甲 — nói không khung","bad":"这个项目吧…… 反正就是有点问题，供应商那边好像出了状况，我也不太确定，可能要晚一点，您看怎么办比较好？","goodLbl":"乙 — nói có khung","good":"项目目前完成八成，原定下月初交付。但供应商通知关键零件延迟两周。那我们是整体推迟，还是先交一部分？我建议分两批交。"},"recognise":[["Khách hỏi vì sao nên chọn trung tâm của bạn chứ không phải chỗ rẻ hơn.","FAB"],["Sếp hỏi: tháng này tuyển sinh thế nào rồi?","SCQA"],["Đồng nghiệp ba lần mượn tài liệu không trả.","DESC"],["Ngồi cạnh một người lạ ở tiệc tất niên công ty.","3W"],["Trong họp, sếp quay sang: em thấy nên tăng học phí không?","PREP"],["Học viên nhắn: em muốn bảo lưu, trung tâm giải quyết sao ạ?","SCQA"],["Phụ huynh hỏi: học online với học ở lớp khác nhau chỗ nào?","FAB"],["Bạn cùng nhóm ba lần nộp phần của mình sát giờ chót.","DESC"],["Gặp một giảng viên bạn ngưỡng mộ ở hành lang hội thảo.","3W"],["Trưởng nhóm hỏi: theo em có nên đổi giáo trình không?","PREP"]],"roleplay":["家长进门问“你们和别家有什么不一样”——用 FAB。","家长说“我家孩子三天打鱼两天晒网”，请你给建议——用 DESC。","主管临时问你“这个月报名情况怎么样”——用 SCQA。","会上被点名“要不要加开周末班”——用 PREP。"]}</script>
+<script>
+(function(){
+"use strict";
+var D = JSON.parse(document.getElementById('data').textContent);
+var root = document.documentElement;
+var app = document.getElementById('app');
+
+/* ───────── điều hướng ───────── */
+var VIEWS = [{id:'start', label:'Mở đầu'}]
+  .concat(D.order.map(function(c){
+     return {id:c, label:D.formulas[c].zh.split(' ')[0], zh:D.formulas[c].zh.split(' ')[1],
+             no:D.formulas[c].no};
+  }))
+  .concat([{id:'drill', label:'Luyện tổng hợp'}]);
+
+var tabs = document.getElementById('tabs');
+VIEWS.forEach(function(v){
+  var b = document.createElement('button');
+  b.className = 'tab'; b.dataset.view = v.id; b.dataset.c = v.id;
+  if (v.zh) {
+    b.innerHTML = '<span class="n">' + v.no + '</span>' + v.label;
+    b.title = v.label + ' ' + v.zh;
+  } else { b.textContent = v.label; }
+  b.addEventListener('click', function(){ go(v.id); });
+  tabs.appendChild(b);
+});
+
+function esc(s){ return String(s).replace(/[&<>"]/g, function(c){
+  return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+/* chữ Hán trong câu tiếng Việt được bọc để giữ đúng font */
+function mix(s){
+  return esc(s).replace(/([　-鿿＀-￯“”‘’]+)/g,
+    '<span class="zh" style="font-size:1.03em">$1</span>');
+}
+
+function go(id){
+  Array.prototype.forEach.call(tabs.children, function(b){
+    b.setAttribute('aria-current', b.dataset.view === id ? 'true' : 'false');
+  });
+  root.setAttribute('data-f', id);
+  app.innerHTML = (id === 'start') ? viewStart()
+                : (id === 'drill') ? viewDrill()
+                : viewFormula(D.formulas[id]);
+  wire();
+  window.scrollTo(0, 0);
+  try { location.hash = id; } catch(e){}
+}
+
+/* ───────── màn mở đầu ───────── */
+function viewStart(){
+  var L = D.leadin, h = '';
+  h += '<section><div class="hero">'
+     + '<div class="eyebrow">Khẩu ngữ cao cấp</div>'
+     + '<h1 class="big">结构化表达五大公式</h1>'
+     + '<p class="sub">Nói có khung, nghe có đường — năm công thức cho năm tình huống khác nhau</p>'
+     + '<div class="ribbon"></div></div></section>';
+
+  h += '<section><h2 class="sec">Vào bài: so hai đoạn này</h2>'
+     + '<p class="secnote">Chiếu cho cả lớp đọc thầm 30 giây, rồi hỏi đúng một câu.</p>'
+     + '<div class="panel" style="margin-bottom:12px;text-align:center">'
+     + '<p class="ln" style="margin:0">' + esc(L.q) + '</p></div>'
+     + '<div class="vs">'
+     + '<div class="x"><h4>' + mix(L.badLbl) + '</h4><p>' + esc(L.bad) + '</p></div>'
+     + '<div class="o"><h4>' + mix(L.goodLbl) + '</h4><p>' + esc(L.good) + '</p></div>'
+     + '</div>'
+     + '<p class="hint">Để học viên tự nói ra nhận xét trước. Hai ví dụ đặt cạnh nhau '
+     + 'nói thay cho một đoạn giảng dài.</p></section>';
+
+  h += '<section><h2 class="sec">Năm công thức, năm tình huống</h2>'
+     + '<div class="steps">';
+  D.order.forEach(function(c){
+    var f = D.formulas[c];
+    h += '<div class="step" data-c="' + c + '"><div class="idx">' + f.no + '</div>'
+       + '<div class="k">' + esc(f.zh) + '</div>'
+       + '<div class="fn">' + esc(f.vn.split('—')[1] ? f.vn.split('—')[1].trim() : f.vn) + '</div>'
+       + '<ul><li style="font-family:var(--f-ui);font-size:13.5px;color:var(--muted)">'
+       + esc(f.steps.map(function(s){ return s.label.split(' ')[0]; }).join(' · '))
+       + '</li></ul></div>';
+  });
+  h += '</div></section>';
+
+  h += '<section><h2 class="sec">Ba nút đáng dùng khi đang dạy</h2>'
+     + '<ul class="req" style="max-width:76ch">'
+     + '<li><b>Ba vòng gỡ dần hỗ trợ</b> ở thanh trên: vòng 1 hiện đủ khung câu, '
+     + 'vòng 2 chỉ còn tên bước, vòng 3 ẩn luôn kho khung và bài mẫu. Cùng một tình huống, '
+     + 'cho nói ba lượt — lượt thứ ba mới là bằng chứng học được.</li>'
+     + '<li><b>Ẩn tiếng Việt</b> để lớp chỉ nhìn chữ Hán khi đã quen.</li>'
+     + '<li><b>Đồng hồ</b> cho các nhiệm vụ nói có giới hạn thời gian.</li>'
+     + '</ul>'
+     + '<p class="hint">Phím tắt: <span class="kbd">←</span> <span class="kbd">→</span> đổi phần · '
+     + '<span class="kbd">1</span>–<span class="kbd">3</span> đổi vòng · '
+     + '<span class="kbd">V</span> ẩn/hiện tiếng Việt · <span class="kbd">Space</span> chạy đồng hồ</p>'
+     + '</section>';
+  return h;
+}
+
+/* ───────── màn một công thức ───────── */
+function viewFormula(f){
+  var h = '';
+  h += '<section><div class="hero">'
+     + '<div class="eyebrow">Công thức ' + esc(f.no) + '</div>'
+     + '<h1 class="big">' + esc(f.zh) + '</h1>'
+     + '<p class="sub">' + esc(f.vn) + '</p>'
+     + '<div class="ribbon"></div></div></section>';
+
+  h += '<section><h2 class="sec">Khi nào dùng</h2>'
+     + '<p class="lead">' + mix(f.when) + '</p></section>';
+
+  h += '<section><h2 class="sec">' + (f.steps.length === 4 ? 'Bốn bước' : 'Ba bước') + '</h2>'
+     + '<div class="roundmsg" id="rmsg2" style="margin-bottom:12px">Vòng 2 — chỉ còn tên bước. '
+     + 'Học viên nói mà không nhìn khung câu.</div>'
+     + '<div class="roundmsg" id="rmsg3" style="margin-bottom:12px">Vòng 3 — không gợi ý. '
+     + 'Chỉ đưa tình huống rồi cho nói.</div>'
+     + '<div class="steps">';
+  f.steps.forEach(function(s, i){
+    h += '<div class="step"><div class="idx">' + (i+1) + '</div>'
+       + '<div class="k">' + esc(s.label) + '</div>'
+       + '<div class="fn">' + esc(s.fn) + '</div><ul>'
+       + s.pats.map(function(p){ return '<li>' + esc(p) + '</li>'; }).join('')
+       + '</ul></div>';
+  });
+  h += '</div></section>';
+
+  h += '<section id="bank">'
+     + '<div style="display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;'
+     + 'justify-content:space-between">'
+     + '<h2 class="sec">Kho diễn đạt</h2>'
+     + '<button class="mini" id="openall" type="button">Mở hết ví dụ</button></div>'
+     + '<p class="secnote">' + mix(f.bankNote) + '</p>';
+  f.bank.forEach(function(g){
+    h += '<div class="grp-h"><span class="k">' + esc(g.label) + '</span>'
+       + '<span class="nt">' + esc(g.note) + '</span></div><div class="cards">';
+    g.pats.forEach(function(p){
+      h += '<div class="card">'
+         + '<button class="top" type="button"><span class="pt">' + esc(p.p) + '</span>'
+         + '<span class="chev">▶</span></button>'
+         + '<div class="when"><b>Dùng khi</b> ' + mix(p.when) + '</div>'
+         + '<div class="exs" hidden>'
+         + p.ex.map(function(e, i){
+             return '<div class="ex"><span class="no">' + (i ? '②' : '①') + '</span>'
+                  + '<span class="bd"><span class="zh">' + esc(e.zh) + '</span>'
+                  + '<span class="vi" style="display:block">' + esc(e.vi) + '</span></span></div>';
+           }).join('')
+         + '</div></div>';
+    });
+    h += '</div>';
+  });
+  h += '</section>';
+
+  h += '<section id="sample"><h2 class="sec">Bài mẫu</h2><div class="panel">';
+  f.sample.forEach(function(l){
+    h += (l.k === 'zh')
+       ? '<p class="ln">' + esc(l.t) + '</p>'
+       : '<div class="vi">' + esc(l.t) + '</div>';
+  });
+  h += '</div></section>';
+
+  if (f.contrast){
+    var c = f.contrast;
+    h += '<section><h2 class="sec">So hai cách nói</h2><div class="vs">'
+       + '<div class="x"><h4>' + mix(c.badLbl) + '</h4><p>' + esc(c.bad) + '</p></div>'
+       + '<div class="o"><h4>' + mix(c.goodLbl) + '</h4><p>' + esc(c.good) + '</p></div>'
+       + '</div><p class="hint">' + mix(c.note) + '</p></section>';
+  }
+
+  h += '<section><h2 class="sec">Ba chỗ dễ sai</h2><ol class="traps">'
+     + f.traps.map(function(t){ return '<li><span class="tx">' + mix(t) + '</span></li>'; }).join('')
+     + '</ol></section>';
+
+  h += '<section><h2 class="sec">Bài tập vận dụng</h2>';
+  f.tasks.forEach(function(t, ti){
+    h += '<div class="task"><h3>' + esc(t.title) + '</h3>'
+       + '<p class="lead">' + mix(t.lead) + '</p>';
+    if (t.material && t.material.length){
+      h += '<div class="mat">' + t.material.map(function(l){
+        return (l.k === 'lbl')
+          ? '<div class="hd">' + esc(l.t) + '</div>'
+          : '<p class="ln">' + esc(l.t) + '</p>';
+      }).join('') + '</div>';
+    }
+    if (t.req && t.req.length){
+      h += '<ul class="req">' + t.req.map(function(r){
+        return '<li><span>' + mix(r) + '</span></li>'; }).join('') + '</ul>';
+    }
+    if (t.check){
+      h += '<div style="margin-bottom:12px"><div style="font-size:11.5px;'
+         + 'letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--amber);'
+         + 'margin-bottom:7px">Tự kiểm — nói xong rồi mới đọc</div>'
+         + '<ul class="chk">' + t.check.map(function(c){
+             return '<li><span>' + mix(c) + '</span></li>'; }).join('') + '</ul></div>';
+    }
+    if (t.answer){
+      var lab = t.check ? 'Hiện bài nói mẫu' : 'Hiện đáp án tham khảo';
+      h += '<button class="btn" data-ans="' + ti + '" data-lab="' + lab + '" type="button">'
+         + lab + '</button>'
+         + '<div class="ans" id="ans' + ti + '" hidden>'
+         + (t.check ? '<div class="lbl">Một bài nói thật của người khác — '
+                    + 'việc của bạn khác nên câu chữ sẽ khác</div>'
+                    : '<div class="lbl">Đáp án tham khảo</div>')
+         + t.answer.map(function(l){
+             return (l.k === 'vn')
+               ? '<div class="vi">' + esc(l.t) + '</div>'
+               : (l.k === 'lbl'
+                  ? '<div class="lbl">' + esc(l.t) + '</div>'
+                  : '<p class="ln">' + esc(l.t) + '</p>');
+           }).join('')
+         + '</div>';
+    }
+    h += '</div>';
+  });
+  h += '</section>';
+  return h;
+}
+
+/* ───────── màn luyện tổng hợp ───────── */
+function viewDrill(){
+  var h = '';
+  h += '<section><div class="hero">'
+     + '<div class="eyebrow">Phần luyện tổng hợp</div>'
+     + '<h1 class="big">综合练习</h1>'
+     + '<p class="sub">Không công thức nào mới — chỉ kiểm tra việc chọn đúng công thức '
+     + 'khi tình huống đến bất ngờ</p><div class="ribbon"></div></div></section>';
+
+  h += '<section><h2 class="sec">Bốc thăm tình huống</h2>'
+     + '<p class="secnote">Bấm để rút một tình huống. Học viên nói tên công thức và vì sao, '
+     + 'rồi mới mở đáp án.</p>'
+     + '<div class="draw">'
+     + '<div class="slot" id="slot">Bấm <b style="color:var(--ink)">Rút thăm</b> để bắt đầu</div>'
+     + '<div class="slot" id="slotans" style="min-height:1.4em;display:none"></div>'
+     + '<div class="row">'
+     + '<button class="btn" id="pick" type="button">Rút thăm</button>'
+     + '<button class="mini" id="reveal" type="button">Hiện công thức</button>'
+     + '</div></div></section>';
+
+  h += '<section><h2 class="sec">Toàn bộ tình huống</h2>'
+     + '<div class="wrap-x"><table class="rec"><thead><tr>'
+     + '<th>Tình huống</th><th>Công thức</th></tr></thead><tbody>';
+  D.recognise.forEach(function(r, i){
+    h += '<tr><td>' + (i+1) + '. ' + esc(r[0]) + '</td>'
+       + '<td class="k"><span class="akey" data-i="' + i + '" '
+       + 'style="cursor:pointer;border-bottom:1px dotted var(--muted);color:var(--muted);'
+       + 'font-weight:500">xem</span></td></tr>';
+  });
+  h += '</tbody></table></div></section>';
+
+  h += '<section><h2 class="sec">Đóng vai chuỗi</h2>'
+     + '<p class="secnote">Một tình huống dài, buộc đổi công thức giữa chừng — giống đời thật '
+     + 'hơn bài tập rời.</p><div class="panel">'
+     + '<div class="lbl">情境：你是一家语言中心的课程顾问</div>'
+     + D.roleplay.map(function(r, i){
+         return '<p class="ln">' + ['①','②','③','④'][i] + ' ' + esc(r) + '</p>'; }).join('')
+     + '</div></section>';
+
+  h += '<section><h2 class="sec">Tự kiểm cuối chuyên đề</h2>'
+     + '<div class="panel"><ul class="chk">'
+     + '<li><span>Viết ra năm chữ viết tắt và mỗi chữ dùng cho tình huống nào.</span></li>'
+     + '<li><span>Nghĩ một tình huống trong công việc của chính mình và nói nó bằng PREP '
+     + 'trong 30 giây.</span></li>'
+     + '<li><span>Công thức nào em sẽ dùng được ngay trong tuần này? Vì sao?</span></li>'
+     + '</ul></div>'
+     + '<p class="hint">Câu 2 cho nhiều dữ liệu nhất. Kể lại được ví dụ trong bài nhưng không '
+     + 'nghĩ ra tình huống của mình, nghĩa là mới dừng ở nhận diện — buổi sau cần thêm một vòng '
+     + 'luyện với chủ đề do học viên tự chọn.</p></section>';
+  return h;
+}
+
+/* ───────── gắn sự kiện sau mỗi lần vẽ ───────── */
+function wire(){
+  Array.prototype.forEach.call(app.querySelectorAll('.card>.top'), function(b){
+    b.addEventListener('click', function(){
+      var card = b.parentNode, ex = card.querySelector('.exs');
+      card.classList.toggle('open');
+      ex.hidden = !card.classList.contains('open');
+    });
+  });
+  var oa = document.getElementById('openall');
+  if (oa){
+    oa.addEventListener('click', function(){
+      var cards = app.querySelectorAll('.card');
+      var open = oa.dataset.on === '1';
+      Array.prototype.forEach.call(cards, function(c){
+        c.classList.toggle('open', !open);
+        c.querySelector('.exs').hidden = open;
+      });
+      oa.dataset.on = open ? '0' : '1';
+      oa.textContent = open ? 'Mở hết ví dụ' : 'Thu lại hết';
+    });
+  }
+  Array.prototype.forEach.call(app.querySelectorAll('[data-ans]'), function(b){
+    b.addEventListener('click', function(){
+      var box = document.getElementById('ans' + b.dataset.ans);
+      box.hidden = !box.hidden;
+      b.textContent = box.hidden ? b.dataset.lab : 'Thu lại';
+    });
+  });
+  Array.prototype.forEach.call(app.querySelectorAll('.akey'), function(s){
+    s.addEventListener('click', function(){
+      s.textContent = D.recognise[+s.dataset.i][1];
+      s.style.color = 'var(--ink)'; s.style.fontWeight = '600';
+      s.style.borderBottom = 'none'; s.style.cursor = 'default';
+    });
+  });
+  var pick = document.getElementById('pick');
+  if (pick){
+    var cur = -1;
+    var slot = document.getElementById('slot'), sa = document.getElementById('slotans');
+    pick.addEventListener('click', function(){
+      var n; do { n = Math.floor(Math.random() * D.recognise.length); } while (n === cur && D.recognise.length > 1);
+      cur = n;
+      slot.textContent = D.recognise[n][0];
+      sa.style.display = 'none'; sa.textContent = '';
+    });
+    document.getElementById('reveal').addEventListener('click', function(){
+      if (cur < 0) return;
+      sa.innerHTML = '<span class="key">' + D.recognise[cur][1] + '</span>';
+      sa.style.display = 'flex';
+    });
+  }
+}
+
+/* ───────── vòng / ẩn tiếng Việt ───────── */
+var rounds = document.getElementById('rounds');
+rounds.addEventListener('click', function(e){
+  var b = e.target.closest('button'); if (!b) return; setRound(b.dataset.r);
+});
+function setRound(r){
+  root.setAttribute('data-round', r);
+  Array.prototype.forEach.call(rounds.children, function(b){
+    b.setAttribute('aria-pressed', b.dataset.r === r ? 'true' : 'false');
+  });
+}
+var novi = document.getElementById('novi');
+novi.addEventListener('click', function(){ setVi(root.getAttribute('data-novi') !== '1'); });
+function setVi(on){
+  root.setAttribute('data-novi', on ? '1' : '0');
+  novi.setAttribute('aria-pressed', on ? 'true' : 'false');
+  novi.textContent = on ? 'Hiện tiếng Việt' : 'Ẩn tiếng Việt';
+}
+
+/* ───────── đồng hồ ───────── */
+var clk = document.getElementById('clock'), goBtn = document.getElementById('go');
+var total = 40, left = 40, tick = null;
+function show(){
+  var m = Math.floor(left / 60), s = left % 60;
+  clk.textContent = m + ':' + (s < 10 ? '0' : '') + s;
+  clk.classList.toggle('done', left === 0);
+  clk.classList.toggle('run', !!tick && left > 0);
+}
+function stop(){ if (tick){ clearInterval(tick); tick = null; } goBtn.textContent = 'Chạy'; show(); }
+function start(){
+  if (tick){ stop(); return; }
+  if (left === 0) left = total;
+  goBtn.textContent = 'Dừng';
+  tick = setInterval(function(){
+    left--; if (left <= 0){ left = 0; stop(); } show();
+  }, 1000);
+  show();
+}
+goBtn.addEventListener('click', start);
+document.getElementById('rs').addEventListener('click', function(){ stop(); left = total; show(); });
+Array.prototype.forEach.call(document.querySelectorAll('[data-t]'), function(b){
+  b.addEventListener('click', function(){ stop(); total = left = +b.dataset.t; show(); });
+});
+show();
+
+/* ───────── phím tắt ───────── */
+document.addEventListener('keydown', function(e){
+  if (e.target.matches('input,textarea')) return;
+  var ids = VIEWS.map(function(v){ return v.id; });
+  var cur = ids.indexOf((location.hash || '#start').slice(1));
+  if (cur < 0) cur = 0;
+  if (e.key === 'ArrowRight'){ go(ids[Math.min(ids.length - 1, cur + 1)]); }
+  else if (e.key === 'ArrowLeft'){ go(ids[Math.max(0, cur - 1)]); }
+  else if (e.key === '1' || e.key === '2' || e.key === '3'){ setRound(e.key); }
+  else if (e.key === 'v' || e.key === 'V'){ setVi(root.getAttribute('data-novi') !== '1'); }
+  else if (e.key === ' '){ e.preventDefault(); start(); }
+});
+
+/* ───────── khởi động ───────── */
+setRound('1'); setVi(false);
+var h0 = (location.hash || '').slice(1);
+go(VIEWS.some(function(v){ return v.id === h0; }) ? h0 : 'start');
+window.addEventListener('hashchange', function(){
+  var id = (location.hash || '').slice(1);
+  if (VIEWS.some(function(v){ return v.id === id; })) go(id);
+});
+})();
+</script>
+
+</body>
+</html>
